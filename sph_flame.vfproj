@@ -4,7 +4,7 @@
 		<Platform Name="Win32"/></Platforms>
 	<Configurations>
 		<Configuration Name="Debug|Win32">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" Interfaces="true" WarnInterfaces="true" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebug"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebug" Interfaces="true"/>
 				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" GenerateDebugInformation="true" SubSystem="subSystemConsole"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
@@ -42,13 +42,13 @@
 		<File RelativePath=".\103_log_output.f90"/>
 		<File RelativePath=".\105_cont_input.f90"/>
 		<File RelativePath=".\110_cont_output.f90"/>
-		<File RelativePath="..\test_get_CFD_values\ck_tran_test\ck_tran_test\src\210_chemkin_m.f90"/>
-		<File RelativePath="..\test_get_CFD_values\ck_tran_test\ck_tran_test\src\210_cklib.f"/>
-		<File RelativePath="..\test_get_CFD_values\ck_tran_test\ck_tran_test\src\220_dasac.f"/>
-		<File RelativePath="..\test_get_CFD_values\ck_tran_test\ck_tran_test\src\230_dmath.f"/>
-		<File RelativePath="..\test_get_CFD_values\ck_tran_test\ck_tran_test\src\240_output_m.f90"/>
-		<File RelativePath="..\test_get_CFD_values\ck_tran_test\ck_tran_test\src\250_senkin.f"/>
-		<File RelativePath="..\test_get_CFD_values\ck_tran_test\ck_tran_test\src\260_tranlib.f"/></Filter>
+		<File RelativePath=".\210_chemkin_m.f90"/>
+		<File RelativePath=".\210_cklib.f"/>
+		<File RelativePath=".\220_dasac.f"/>
+		<File RelativePath=".\230_dmath.f"/>
+		<File RelativePath=".\240_output_m.f90"/>
+		<File RelativePath=".\250_senkin.f"/>
+		<File RelativePath=".\260_tranlib.f"/></Filter>
 		<Filter Name="ヘッダーファイル" Filter="fi;fd"/>
 		<Filter Name="リソースファイル" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
 	<Globals/></VisualStudioProject>
