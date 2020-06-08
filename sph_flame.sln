@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "sph_flame", "sph_flame.vfproj", "{1DD69F7B-A0EC-46E2-9109-5827A5A8C9AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DD69F7B-A0EC-46E2-9109-5827A5A8C9AB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1DD69F7B-A0EC-46E2-9109-5827A5A8C9AB}.Debug|Win32.Build.0 = Debug|Win32
+		{1DD69F7B-A0EC-46E2-9109-5827A5A8C9AB}.Release|Win32.ActiveCfg = Release|Win32
+		{1DD69F7B-A0EC-46E2-9109-5827A5A8C9AB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {769C2178-DE61-4FB3-B24B-AFD16F014F2C}
+	EndGlobalSection
+EndGlobal

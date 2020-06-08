@@ -1,0 +1,76 @@
+
+ SENKIN:  Sensitity Analysis
+          Author: Andy Lutz
+          CHEMKIN-II Version 1.8, December 1991
+          DOUBLE PRECISION
+
+                Working Space Requirements
+                 Provided        Required 
+ Integer          1000000           6949
+ Real            20000000           9264
+ Character          10000            112
+
+
+     Pressure is held constant.
+
+
+  Initial Conditions:
+
+  Pressure (atm)  =  0.0000E+00
+  Temperature (K) =  0.0000E+00
+  Density (gm/cc) = NaN        
+
+  Mole Fractions:
+ H2         = 0.0000E+00
+ H          = 0.0000E+00
+ O          = 0.0000E+00
+ O2         = 0.0000E+00
+ OH         = 0.0000E+00
+ H2O        = 0.0000E+00
+ HO2        = 0.0000E+00
+ H2O2       = 0.0000E+00
+ C          = 0.0000E+00
+ CH         = 0.0000E+00
+ CH2        = 0.0000E+00
+ CH2(S)     = 0.0000E+00
+ CH3        = 0.0000E+00
+ CH4        = 0.0000E+00
+ CO         = 0.0000E+00
+ CO2        = 0.0000E+00
+ HCO        = 0.0000E+00
+ CH2O       = 0.0000E+00
+ CH2OH      = 0.0000E+00
+ CH3O       = 0.0000E+00
+ CH3OH      = 0.0000E+00
+ C2H        = 0.0000E+00
+ C2H2       = 0.0000E+00
+ C2H3       = 0.0000E+00
+ C2H4       = 0.0000E+00
+ C2H5       = 0.0000E+00
+ C2H6       = 0.0000E+00
+ HCCO       = 0.0000E+00
+ CH2CO      = 0.0000E+00
+ HCCOH      = 0.0000E+00
+ N          = 0.0000E+00
+ NH         = 0.0000E+00
+ NH2        = 0.0000E+00
+ NH3        = 0.0000E+00
+ NNH        = 0.0000E+00
+ NO         = 0.0000E+00
+ NO2        = 0.0000E+00
+ N2O        = 0.0000E+00
+ HNO        = 0.0000E+00
+ CN         = 0.0000E+00
+ HCN        = 0.0000E+00
+ H2CN       = 0.0000E+00
+ HCNN       = 0.0000E+00
+ HCNO       = 0.0000E+00
+ HOCN       = 0.0000E+00
+ HNCO       = 0.0000E+00
+ NCO        = 0.0000E+00
+ N2         = 0.0000E+00
+ AR         = 0.0000E+00
+ C3H7       = 0.0000E+00
+ C3H8       = 0.0000E+00
+ CH2CHO     = 0.0000E+00
+ CH3CHO     = 0.0000E+00
