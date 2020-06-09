@@ -10,7 +10,7 @@ subroutine data_output(x_time, n_out)
     open(unit=n_file, file='data_'//data_n//'.csv' ,status='unknown')
     write (n_file,*) x_time
     write (n_file,'(30(A,","))') '  R(mm)','T(K)','mf(-)','mCO2(-)','v(m/s)','rho(kg/m3)','enthalpy(J/kg)'
-    do n=1, 400
+    do n=1, nmax
         x_mm = xscl(n)*1.0d3
         write (n_file,'(30(E12.4,","))') x_mm, temp(n),m_chsp(n,14),m_chsp(n,16),vel(n),dens(n),enth(n)
     end do
