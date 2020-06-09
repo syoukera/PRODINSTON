@@ -23,7 +23,8 @@ C
 C     where   W(t):=dy/dp
 C--------------------------------------------------------------------
       LOGICAL DONE
-      EXTERNAL RES,JAC,DRES,DFDYP
+      EXTERNAL RES,DRES
+C     EXTERNAL JAC, DFDYP
       DIMENSION Y(*), YPRIME(*), INFO(15),ISEN(5)
       DIMENSION RWORK(*), IWORK(*), SWORK(*), RTOL(*), ATOL(*)
       DIMENSION RPAR(*), IPAR(*)
@@ -762,7 +763,8 @@ C-----------------------------------------------------------------------
 C*****precision > double
       IMPLICIT DOUBLE PRECISION(A-H,O-Z), INTEGER(I-N)
 C*****END precision > double
-      EXTERNAL RES,JAC
+      EXTERNAL RES
+C     EXTERNAL JAC
       DIMENSION Y(*), YPRIME(*), DELTA(*), WT(*), E(*)
       DIMENSION WM(*), IWM(*), RPAR(*), IPAR(*), DTEM(*)
       COMMON/DDA001/NPD,NTEMP,
@@ -778,7 +780,7 @@ C
 100   LENPD=NEQ*NEQ
       DO 110 I=1,LENPD
 110      WM(NPDM1+I)=0.0D0
-      CALL JAC(X,Y,YPRIME,WM(NPD),CJ,RPAR,IPAR)
+C     CALL JAC(X,Y,YPRIME,WM(NPD),CJ,RPAR,IPAR)
       GO TO 230
 C
 C     Dense finite-difference-generated matrix.
@@ -827,7 +829,7 @@ C
 400   LENPD=(2*IWM(LML)+IWM(LMU)+1)*NEQ
       DO 410 I=1,LENPD
 410      WM(NPDM1+I)=0.0D0
-      CALL JAC(X,Y,YPRIME,WM(NPD),CJ,RPAR,IPAR)
+C     CALL JAC(X,Y,YPRIME,WM(NPD),CJ,RPAR,IPAR)
       MEBAND=2*IWM(LML)+IWM(LMU)+1
       GO TO 550
 C
@@ -917,7 +919,8 @@ C*****END precision > double
       DIMENSION DTEM(*), EMAT(*), WM(*), IWM(*)
       DIMENSION PSI(*), ALPHA(*), BETA(*), GAMMA(*), SIGMA(*)
       DIMENSION RPAR(*), IPAR(*)
-      EXTERNAL RES,JAC,DRES,DFDYP
+      EXTERNAL RES, DRES
+C     EXTERNAL JAC, DFDYP
       COMMON/DDA001/NPD,NTEMP,
      *   LML,LMU,LMXORD,LMTYPE,
      *   LNST,LNRE,LNJE,LETF,LCTF,LIPVT
@@ -1527,7 +1530,8 @@ C*****END precision > double
       LOGICAL CONVGD
       DIMENSION Y(*), YPRIME(*), WT(*), PHI(NEQ,*), DELTA(*), E(*)
       DIMENSION WM(*), IWM(*), RPAR(*), IPAR(*), DTEM(NEQ)
-      EXTERNAL RES,JAC
+      EXTERNAL RES
+C     EXTERNAL JAC
       COMMON/DDA001/NPD,NTEMP,
      *  LML,LMU,LMXORD,LMTYPE,
      *  LNST,LNRE,LNJE,LETF,LCTF,LIPVT
@@ -2357,7 +2361,8 @@ C*****precision > double
 C*****END precision > double
         DIMENSION Y(NSYS,*), YPRIME(NSYS,*), E(NSYS,*), DELTA(NSYS,*)
         DIMENSION EMAT(*), WM(*), RPAR(*), IWM(*), DTEM(*), IPAR(*)
-        EXTERNAL RES,DRES,DFDYP
+        EXTERNAL RES,DRES
+C       EXTERNAL DFDYP
         COMMON/DDA001/NPD,NTEMP,
      *    LML,LMU,LMXORD,LMTYPE,
      *    LNST,LNRE,LNJE,LEFT,LCTF,LIPVT
@@ -2391,8 +2396,8 @@ C
 C         Now compute the right hand side of the sensitivity
 C        equations. Store the result in delta(i,j).
 C
-        IF(INDEX.EQ.2)
-     *        CALL DFDYP(T,Y(1,1),YPRIME(1,1),EMAT,RPAR,IPAR)
+C       IF(INDEX.EQ.2)
+C    *        CALL DFDYP(T,Y(1,1),YPRIME(1,1),EMAT,RPAR,IPAR)
         DO 60 IPARM=1,NPAR
         CALL DDSRHS(T,Y(1,IPARM+1),YPRIME(1,IPARM+1),NSYS,EMAT,
      *  DELTA(1,IPARM+1),CJ,RPAR,IPAR)
