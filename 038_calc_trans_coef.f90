@@ -11,6 +11,9 @@ subroutine calc_trans_coef
     make_output = .false.
 !
     do n=1, nmax
+        do i = 1, nsp
+            mf_chem(i) = m_chsp(n, i)
+        end do
         chem_t=0.0d0
         do i=1, nsp
             if (mf_chem(i).le.0.0d0) mf_chem(i) = 0.0d0
