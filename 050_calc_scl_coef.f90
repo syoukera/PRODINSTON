@@ -35,9 +35,9 @@ subroutine calc_scl_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
         delt_xc_w= xscl(n)-xvel(n-1)
         Gamma_e  = (delt_xc_e/delt_x_e)*(Gamma(n+1)-Gamma(n))+Gamma(n)
         Gamma_w  = (delt_xc_w/delt_x_w)*(Gamma(n)-Gamma(n-1))+Gamma(n-1)
-        S_e      = 4.0d0*pai*xvel(n)**2
-        S_w      = 4.0d0*pai*xvel(n-1)**2
-        V_p      = (4.0d0/3.0d0)*pai*(xvel(n)**3-xvel(n-1)**3)
+        S_e      = 1.0d0
+        S_w      = 1.0d0
+        V_p      = xvel(n) - xvel(n-1)
 !
         F_e = ((delt_xc_e/delt_x_e)*(dens(n+1)-dens(n))+dens(n))  *vel(n)    *S_e
         F_w = ((delt_xc_w/delt_x_w)*(dens(n)-dens(n-1))+dens(n-1))*vel(n-1)  *S_w
