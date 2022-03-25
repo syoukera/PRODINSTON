@@ -2,9 +2,9 @@
 module main_variables
 implicit none
 !   grid parameter
-    real*8,parameter   :: pai  =3.1415926535d0
+    real*8,parameter   :: pai  = 3.1415926535d0
     integer, parameter :: nmax = 300            ! grid number [-]
-    integer, parameter :: nsp = 53              ! number of chemical species [-]
+    integer, parameter :: nsp = 9               ! number of chemical species [-]
     real*8 xscl(nmax), xvel(nmax)                ! grid position, xscl:scalar, xvel:velocity [m]
 !
 !   time parameter
@@ -38,7 +38,7 @@ implicit none
 end module
 
      CHARACTER(6) FUNCTION NUM2STR(NUM)
-		! ƒXƒeƒbƒv”‚ğ6Œ…‚Ì•¶š—ñ‚É•ÏŠ·i¶‘¤0ƒpƒfƒBƒ“ƒOj
+		! ï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½ï¿½ï¿½6ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½É•ÏŠï¿½ï¿½iï¿½ï¿½ï¿½ï¿½0ï¿½pï¿½fï¿½Bï¿½ï¿½ï¿½Oï¿½j
 	    IMPLICIT NONE
       INTEGER,INTENT(IN) :: NUM
       CHARACTER*6 STR
