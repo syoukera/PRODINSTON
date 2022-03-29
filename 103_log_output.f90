@@ -90,8 +90,8 @@ subroutine log_output(xtime,nl_file)
 !
     mf_T = 0.0d0
     do i=1,nmax-1
-        V_p = (4.0d0/3.0d0)*pai*(xvel(i+1)**3-xvel(i)**3)
-        mf_T = mf_T+m_chsp(i,14)*dens(i)*V_p
+        V_p = xvel(n) - xvel(n-1)
+        mf_T = mf_T+m_chsp(i,1)*dens(i)*V_p
     end do
 !
 !
