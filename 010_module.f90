@@ -3,12 +3,12 @@ module main_variables
 implicit none
 !   grid parameter
     real*8,parameter   :: pai  = 3.1415926535d0
-    integer, parameter :: nmax = 300            ! grid number [-]
+    integer, parameter :: nmax = 400            ! grid number [-]
     integer, parameter :: nsp = 9               ! number of chemical species [-]
     real*8 xscl(nmax), xvel(nmax)                ! grid position, xscl:scalar, xvel:velocity [m]
 !
 !   time parameter
-    real*8, parameter :: delt_t   = 2.0e-6      ! delta t [s]
+    real*8, parameter :: delt_t   = 2.0e-7      ! delta t [s]
     real*8, parameter :: time_end = 5.0e-2     ! end time [s]
 !
 !   const parameter
