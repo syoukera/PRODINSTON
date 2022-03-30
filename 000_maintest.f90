@@ -61,6 +61,9 @@
         call calc_dens
 !
         write (6,'("time = ",e12.4)') xtime
+
+!       -- set flame at same position --
+        call fix_flame_pos
 !
 !       -- data output --
 !
