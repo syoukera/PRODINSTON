@@ -16,24 +16,18 @@ subroutine initial_set
 !
 !   --------- scalar values ----------
     do n=1, nmax
-        if (n.le.5) then
+        if (n.le.nmax/2) then
             temp(n) = 5000.0d0
             enth(n) = 5902518.0d0
             do i=1, nsp
                 m_chsp(n,i) = mb_phi1(i)
             end do
-        else if (n.le.400) then
+        else
             temp(n) = 300.0d0
             enth(n) = -23690.527d0
             do i=1, nsp
                 m_chsp(n,i) = mf_chem(i)
             end do
-        else
-            temp(n) = 300.0d0
-            enth(n) = 1913.755d0
-            do i=1, nsp
-                m_chsp(n,i) = mf_air(i)
-            end do          
         end if
         vel(n)      = 0.0d0
         pres(n)     = 0.0d0
