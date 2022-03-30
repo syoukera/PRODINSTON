@@ -34,6 +34,10 @@ implicit none
     real*8 o_enth(nmax)                          ! old value of enthalpy
     real*8 o_m_chsp(nmax,nsp)                    ! old value of mass fraction of chemical species
 !
+!   variable for flame position
+    integer n_flame                            ! Index of flame position in current state
+    integer, parameter :: n_flame_fix = nmax/2   ! Index of flame position should be fixed
+    real*8, parameter :: temp_flame = 1000       ! Temperature set as flame position [K]
 ! 
 end module
 
