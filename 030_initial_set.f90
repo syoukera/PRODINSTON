@@ -16,7 +16,7 @@ subroutine initial_set
 !
 !   --------- scalar values ----------
     do n=1, nmax
-        if (n.le.100) then
+        if (n.le.5) then
             temp(n) = 5000.0d0
             enth(n) = 5902518.0d0
             do i=1, nsp
