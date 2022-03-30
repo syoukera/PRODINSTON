@@ -28,7 +28,8 @@
     n_simple_max = 200
     x_limit = 1.0d-6
 !
-    read (5,*) n_cont
+    ! read (5,*) n_cont
+    n_cout = 0
 !
 !   -------- time loop --------------
     call data_output(0.0d0,0)
@@ -39,7 +40,7 @@
         xtime = 0.0d0
         n_out  = 0
     end if
-!
+    
     do ntime = 1, 9999999
         xtime = xtime+delt_t
 !
