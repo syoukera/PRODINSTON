@@ -46,7 +46,7 @@
         call old_value_st
 !
 !       -- chemical kinetics calculation --
-!       call chem_source(ntime)
+        call chem_source(ntime)
 !
 !       -- calculatoin of density change --
         call calc_dens
