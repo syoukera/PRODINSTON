@@ -45,20 +45,17 @@ subroutine disp_flame_pos()
     
     n_diff = n_flame - n_flame_fix
 
+    ! Mass fraction for upstream mixture
+    ! This composition is same as used in initial_set
     data mf_chem  /2.85110947E-02, 0.00000000E+00, 2.26276778E-01, 0.00000000E+00, 0.00000000E+00, &
                    0.00000000E+00, 0.00000000E+00, 0.00000000E+00, 7.45212127E-01/
 
+
+    ! Dixplace flame position to center when flame moved
     if (n_diff > 0) then
 
-        ! assign umbured mixture
-        do n = nmax-n_diff+1, nmax
-            temp(n) = 300.0d0
-            do i = 1, nsp
-                m_chsp(n, i) = mf_chem(i)
-            enddo
-        enddo
-
         ! asign upstream (larger index) value
+        ! Discpace grid data for n_diff
         do n = 1, nmax-n_diff
             nn = n + n_diff
 
@@ -68,6 +65,14 @@ subroutine disp_flame_pos()
             dens(n) = dens(nn)
             do i = 1, nsp
                 m_chsp(n, i) = m_chsp(nn, i)
+            enddo
+        enddo
+
+        ! assign umbured mixture
+        do n = nmax-n_diff+1, nmax
+            temp(n) = 300.0d0
+            do i = 1, nsp
+                m_chsp(n, i) = mf_chem(i)
             enddo
         enddo
     endif
