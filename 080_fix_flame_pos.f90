@@ -37,7 +37,7 @@ end subroutine
 
 subroutine disp_flame_pos()
     use main_variables, only: nmax, nsp, n_flame, n_flame_fix, &
-                              temp, vel, pres, dens, m_chsp
+                              temp, vel, pres, dens, m_chsp, n_disp
     implicit none
     
     integer :: n, nn, i, n_diff
@@ -53,6 +53,11 @@ subroutine disp_flame_pos()
 
     ! Dixplace flame position to center when flame moved
     if (n_diff > 0) then
+
+        ! Save solutions before displace
+        n_disp = n_disp+1
+        call data_output_disp()
+        ! call log_output_disp(xtime, nl_file)
 
         ! asign upstream (larger index) value
         ! Discpace grid data for n_diff
@@ -77,4 +82,24 @@ subroutine disp_flame_pos()
         enddo
     endif
 
+end subroutine
+
+subroutine data_output_disp()
+    !
+        use main_variables
+        integer n_file
+        real*8 x_mm
+        character*6 data_n, num2str
+        n_file = 1000+n_disp
+        data_n = num2str(n_disp)
+    !
+        open(unit=n_file, file='disp_data_'//data_n//'.csv' ,status='unknown')
+        ! write (n_file,*) x_time
+        write (n_file,'(30(A,","))') '  R(mm)','T(K)','mf(-)','mH2O(-)','v(m/s)','rho(kg/m3)','enthalpy(J/kg)'
+        do n=1, nmax
+            x_mm = xscl(n)*1.0d3
+            write (n_file,'(30(E12.4,","))') x_mm, temp(n),m_chsp(n,1),m_chsp(n,8),vel(n),dens(n),enth(n)
+        end do
+        close(n_file)
+    !
 end subroutine
