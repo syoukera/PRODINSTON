@@ -1,10 +1,11 @@
 ! Fix flame at same position
-subroutine fix_flame_pos()
+subroutine fix_flame_pos(x_time)
     implicit none
+    real*8 x_time
 
     call get_flame_pos
     ! call calc_flame_vel
-    call disp_flame_pos
+    call disp_flame_pos(x_time)
 
 end subroutine
 
@@ -35,13 +36,14 @@ subroutine calc_flame_vel()
 
 end subroutine
 
-subroutine disp_flame_pos()
+subroutine disp_flame_pos(x_time)
     use main_variables, only: nmax, nsp, n_flame, n_flame_fix, &
                               temp, vel, pres, dens, m_chsp, n_disp
     implicit none
     
     integer :: n, nn, i, n_diff
     real*8 mf_chem(nsp)
+    real*8 x_time
     
     n_diff = n_flame - n_flame_fix
 
@@ -56,8 +58,8 @@ subroutine disp_flame_pos()
 
         ! Save solutions before displace
         n_disp = n_disp+1
-        call data_output_disp()
-        ! call log_output_disp(xtime, nl_file)
+        call data_output_disp(x_time)
+        ! call log_output_disp(x_time, nl_file)
 
         ! asign upstream (larger index) value
         ! Discpace grid data for n_diff
@@ -84,17 +86,18 @@ subroutine disp_flame_pos()
 
 end subroutine
 
-subroutine data_output_disp()
+subroutine data_output_disp(x_time)
     !
         use main_variables
         integer n_file
         real*8 x_mm
+        real*8 x_time
         character*6 data_n, num2str
         n_file = 1000+n_disp
         data_n = num2str(n_disp)
     !
         open(unit=n_file, file='disp_data_'//data_n//'.csv' ,status='unknown')
-        ! write (n_file,*) x_time
+        write (n_file,*) x_time
         write (n_file,'(30(A,","))') '  R(mm)','T(K)','mf(-)','mH2O(-)','v(m/s)','rho(kg/m3)','enthalpy(J/kg)'
         do n=1, nmax
             x_mm = xscl(n)*1.0d3

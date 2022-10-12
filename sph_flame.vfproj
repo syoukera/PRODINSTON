@@ -38,6 +38,7 @@
 		<File RelativePath=".\050_calc_scl_coef.f90"/>
 		<File RelativePath=".\060_calc_tdma.f90"/>
 		<File RelativePath=".\070_chem_source.f90"/>
+		<File RelativePath=".\080_fix_flame_pos.f90"/>
 		<File RelativePath=".\100_data_output.f90"/>
 		<File RelativePath=".\103_log_output.f90"/>
 		<File RelativePath=".\105_cont_input.f90"/>
