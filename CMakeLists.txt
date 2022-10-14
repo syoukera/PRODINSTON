@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(test_cmake VERSION 0.1.0)
+project(prodinston VERSION 0.1.0)
 
 enable_language(Fortran)
 
@@ -7,9 +7,10 @@ enable_language(Fortran)
 # enable_testing()
 
 add_compile_options(-fno-range-check)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
 
-set(EXECUTABLE abcd)
-add_executable(${EXECUTABLE}
+# set(EXECUTABLE )
+add_executable(${PROJECT_NAME}
     000_maintest.f90
     010_module.f90
     020_grid_set.f90
@@ -37,6 +38,6 @@ add_executable(${EXECUTABLE}
     260_tranlib.f
 )
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 # include(CPack)
