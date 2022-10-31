@@ -343,4 +343,5 @@ ASALocalRun/
 healthchecksdb
 
 *build
+*.mod
 prodinston
