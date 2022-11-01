@@ -1,4 +1,3 @@
-# set(EXECUTABLE )
 add_executable(${PROJECT_NAME}
     000_maintest.f90
     010_module.f90
@@ -25,8 +24,13 @@ add_executable(${PROJECT_NAME}
     240_output_m.f90 
     250_senkin.f
     260_tranlib.f
+    cantera_params.cpp
+    cantera_params.f90
 )
 
-# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-# include(CPack)
+target_link_libraries(${PROJECT_NAME} cantera Threads::Threads)
+
+set_target_properties(${PROJECT_NAME}
+  PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+  )
