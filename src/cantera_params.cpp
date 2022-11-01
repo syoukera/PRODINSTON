@@ -13,7 +13,7 @@ using namespace Cantera;
 using std::cout;
 using std::endl;
 
-void getnextty(double y[], double *temperature)
+void getnextty(double y[], double *temperature, double *dt)
 {
     cout << "\n**** Get next TY ****\n" << endl;
 
@@ -35,8 +35,8 @@ void getnextty(double y[], double *temperature)
     // quantities needed.
     r.insert(sol);
 
-    double dt = 1.e+1; // interval at which output is written
-    int nsteps = 100; // number of intervals
+    // double dt = 1.e+1; // interval at which output is written
+    // int nsteps = 100; // number of intervals
 
     // create a 2D array to hold the output variables,
     // and store the values for the initial state
@@ -47,7 +47,7 @@ void getnextty(double y[], double *temperature)
     // and add the reactor to it
     ReactorNet sim;
     sim.addReactor(r);
-    sim.advance(dt);
+    sim.advance(*dt);
 
     *temperature = r.temperature();
     for (size_t k = 0; k < nsp; k++) {

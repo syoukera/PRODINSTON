@@ -1,20 +1,22 @@
 module cantera_params
     use iso_c_binding
+    use main_variables, only: nsp
     implicit none
 
     interface 
 
-        subroutine getnextty(y, temperature) bind(C)
+        subroutine getnextty(y, temperature, dt) bind(C)
             import 
-            real(c_double), intent(inout) :: y(10)
+            real(c_double), intent(inout) :: y(nsp)
             real(c_double), intent(inout) :: temperature
+            real(c_double), intent(in) :: dt
         end subroutine
 
         subroutine getproperties(y, temperature, diff, lambda, cp) bind(C)
             import 
-            real(c_double), intent(inout) :: y(10)
+            real(c_double), intent(inout) :: y(nsp)
             real(c_double), intent(inout) :: temperature
-            real(c_double), intent(out) :: diff(10)
+            real(c_double), intent(out) :: diff(nsp)
             real(c_double), intent(out) :: lambda
             real(c_double), intent(out) :: cp
         end subroutine
