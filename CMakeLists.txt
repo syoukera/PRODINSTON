@@ -1,45 +1,19 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(prodinston VERSION 0.1.0)
+cmake_minimum_required(VERSION 3.0)
 
 enable_language(Fortran)
+project(prodinston Fortran CXX)
 
-# include(CTest)
-# enable_testing()
+set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_CXX_STANDARD 11)
+
+find_package(Threads REQUIRED)
+include_directories(include)
+
+# include_directories("C:\Program Files\Cantera\include" "C:\Users\sakir\miniconda3\envs\ct_src\Library\include")
+# link_directories("C:\Program Files\Cantera\lib")
+# include_directories(include)
 
 add_compile_options(-fno-range-check)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
 
 add_subdirectory(src)
-
-# set(EXECUTABLE )
-# add_executable(${PROJECT_NAME}
-#     000_maintest.f90
-#     010_module.f90
-#     020_grid_set.f90
-#     030_initial_set.f90
-#     032_old_value_st.f90
-#     035_calc_dens.f90
-#     038_calc_trans_coef.f90
-#     040_scl_trans.f90
-#     042_enth_trans.f90
-#     045_calc_vel_cont.f90
-#     050_calc_scl_coef.f90
-#     060_calc_tdma.f90
-#     070_chem_source.f90
-#     080_fix_flame_pos.f90
-#     100_data_output.f90
-#     103_log_output.f90
-#     105_cont_input.f90
-#     110_cont_output.f90
-#     210_chemkin_m.f90
-#     210_cklib.f  
-#     220_dasac.f  
-#     230_dmath.f  
-#     240_output_m.f90 
-#     250_senkin.f
-#     260_tranlib.f
-# )
-
-# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-# include(CPack)
