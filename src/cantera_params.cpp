@@ -15,7 +15,7 @@ using std::endl;
 
 void getnextty(double y[], double *temperature, double *dt)
 {
-    cout << "\n**** Get next TY ****\n" << endl;
+    // cout << "\n**** Get next TY ****\n" << endl;
 
     // create an ideal gas mixture that corresponds to OH submech from GRI-Mech 3.0
     auto sol = newSolution("h2o2.yaml", "ohmech", "None");
@@ -57,7 +57,7 @@ void getnextty(double y[], double *temperature, double *dt)
 
 void getproperties(double y[], double *temperature, double diff[], double *lambda, double *cp)
 {
-    cout << "\n**** Get proparties ****\n" << endl;
+    // cout << "\n**** Get proparties ****\n" << endl;
 
     // create an ideal gas mixture that corresponds to OH submech from GRI-Mech 3.0
     auto sol = newSolution("h2o2.yaml", "ohmech", "None");
