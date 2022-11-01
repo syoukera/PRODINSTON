@@ -4,7 +4,7 @@ implicit none
 !   grid parameter
     real*8,parameter   :: pai  = 3.1415926535d0
     integer, parameter :: nmax = 400            ! grid number [-]
-    integer, parameter :: nsp = 9               ! number of chemical species [-]
+    integer, parameter :: nsp = 10               ! number of chemical species [-]
     real*8 xscl(nmax), xvel(nmax)                ! grid position, xscl:scalar, xvel:velocity [m]
 !
 !   time parameter
@@ -39,6 +39,18 @@ implicit none
     integer, parameter :: n_flame_fix = nmax/2   ! Index of flame position should be fixed
     real*8, parameter :: temp_flame = 1000       ! Temperature set as flame position [K]
     integer :: n_disp = 0                        ! Count of displacement operation
+
+    real*8 mf_chem(nsp), mb_phi1(nsp)
+!
+    ! reaction mechanism is h2o2.yaml
+    ! upstream mixuture
+    data mf_chem /2.8511094700E-02, 0.0000000000E+00, 0.0000000000E+00, 2.2627677800E-01, &
+                  0.0000000000E+00, 0.0000000000E+00, 0.0000000000E+00, 0.0000000000E+00, &
+                  0.0000000000E+00, 7.4521212700E-01 /
+    ! burned mixture
+    data mb_phi1 /1.1990037600E-03, 9.2745523600E-05, 5.8629498400E-04, 1.0785271500E-02, &
+                  5.9656132200E-03, 2.3632841500E-01, 2.6111932600E-06, 3.0007698200E-07, &
+                  0.0000000000E+00, 7.4503974400E-01 /
 ! 
 end module
 

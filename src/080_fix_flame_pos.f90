@@ -38,20 +38,13 @@ end subroutine
 
 subroutine disp_flame_pos(x_time)
     use main_variables, only: nmax, nsp, n_flame, n_flame_fix, &
-                              temp, vel, pres, dens, m_chsp, n_disp
+                              temp, vel, pres, dens, m_chsp, n_disp, mf_chem
     implicit none
     
     integer :: n, nn, i, n_diff
-    real*8 mf_chem(nsp)
     real*8 x_time
     
     n_diff = n_flame - n_flame_fix
-
-    ! Mass fraction for upstream mixture
-    ! This composition is same as used in initial_set
-    data mf_chem  /2.85110947E-02, 0.00000000E+00, 2.26276778E-01, 0.00000000E+00, 0.00000000E+00, &
-                   0.00000000E+00, 0.00000000E+00, 0.00000000E+00, 7.45212127E-01/
-
 
     ! Dixplace flame position to center when flame moved
     if (n_diff > 0) then
