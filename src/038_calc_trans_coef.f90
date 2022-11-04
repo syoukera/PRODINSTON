@@ -2,6 +2,7 @@ subroutine calc_trans_coef
 !
     use main_variables
     use chemkin_params, only: get_tranport_data
+    use cantera_params, only: getproperties
     use output, only: make_output
     real*8 chem_t, mf(nsp), t_cell
     real*8 D_mix(nsp)      !diffusion coefficient  [cm^2/s]
@@ -25,7 +26,8 @@ subroutine calc_trans_coef
         end do
         t_cell = o_temp(n)
 !
-        call get_tranport_data(t_cell, pres0, mf, D_mix, Lambda_mix, c_p)
+        ! call get_tranport_data(t_cell, pres0, mf, D_mix, Lambda_mix, c_p)
+        call getproperties(mf, t_cell, D_mix, Lambda_mix, c_p)
 !
         T_D(n) = Lambda_mix/c_p*1.0d-1
         write (6,*) n, Lambda_mix, c_p
