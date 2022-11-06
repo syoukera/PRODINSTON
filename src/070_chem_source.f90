@@ -2,7 +2,6 @@
 subroutine chem_source(ntime)
 !
     use main_variables
-    use chemkin_params, only: get_next_TY
     use cantera_params, only: getnextty
     use output, only: make_output
 
@@ -26,7 +25,6 @@ subroutine chem_source(ntime)
             mf(i) = mf(i)/chem_t
         end do
 !
-    !    call get_next_TY(pres0, t_cell, mf, delt_t, tols)
         call getnextty(mf, t_cell, delt_t)
 !
         temp(n) = t_cell

@@ -17,13 +17,7 @@ add_executable(${PROJECT_NAME}
     103_log_output.f90
     105_cont_input.f90
     110_cont_output.f90
-    210_chemkin_m.f90
-    210_cklib.f  
-    220_dasac.f  
-    230_dmath.f  
-    240_output_m.f90 
-    250_senkin.f
-    260_tranlib.f
+    240_output_m.f90
     cantera_params.cpp
     cantera_params.f90
 )

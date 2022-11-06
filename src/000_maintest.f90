@@ -2,7 +2,6 @@
 !
 !
     use main_variables
-    use chemkin_params, only: initialize_chemkin_workarray
     use output, only: make_output
     real*8 xtime
     real*8 before_chk(nmax), after_chk(nmax)
@@ -13,7 +12,6 @@
 !
 !   -------- chemkin data open -----------
     make_output = .false.
-    call initialize_chemkin_workarray()
 !
 !   -------- data in out ----------
     out_step  = 200
