@@ -4,6 +4,7 @@ subroutine chem_source(ntime)
     use main_variables
     use cantera_params, only: getnextty
     use output, only: make_output
+    !$ use omp_lib
 
     integer ntime
     real*8 t_cell
@@ -11,7 +12,8 @@ subroutine chem_source(ntime)
     real*8 chem_t
     real*8 :: tols(4)
     data tols /1.E-8, 1.E-20, 1.E-5, 1.E-5/
-!
+
+    !$omp parallel
     do n=1,nmax
         t_cell = o_temp(n)
         chem_t=0.0d0
@@ -33,5 +35,6 @@ subroutine chem_source(ntime)
             m_chsp(n,i)   = mf(i) 
         end do
     end do      
+    !$omp end parallel
 !    
 end subroutine
