@@ -1,6 +1,8 @@
 ! test program for spherical flame propagation
 !
 !
+program main
+    
     use main_variables
     use output, only: make_output
     real*8 xtime
@@ -80,5 +82,4 @@
     end do
     close (nl_file)
 !
-    end
-   
+end program main

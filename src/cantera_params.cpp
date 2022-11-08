@@ -23,7 +23,7 @@ void getnextty(double y[], double *temperature, double *dt)
 
     // set the state
     gas->setState_TPY(*temperature, OneAtm, y);
-    int nsp = gas->nSpecies();
+    size_t nsp = gas->nSpecies();
 
     // create a reactor
     IdealGasConstPressureReactor r;
@@ -66,7 +66,7 @@ void getproperties(double y[], double *temperature, double diff[], double *lambd
     auto gas = sol->thermo();
 
     // get number of species
-    int nsp = gas->nSpecies();
+    size_t nsp = gas->nSpecies();
 
     // set the state
     gas->setState_TPY(*temperature, OneAtm, y);
