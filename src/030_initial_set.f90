@@ -8,13 +8,13 @@ subroutine initial_set
             temp(n) = 5000.0d0
             enth(n) = 5902518.0d0
             do i=1, nsp
-                m_chsp(n,i) = mb_phi1(i)
+                m_chsp(n,i) = mf_burned(i)
             end do
         else
             temp(n) = 300.0d0
             enth(n) = -23690.527d0
             do i=1, nsp
-                m_chsp(n,i) = mf_chem(i)
+                m_chsp(n,i) = mf_unburned(i)
             end do
         end if
         vel(n)      = 0.0d0
