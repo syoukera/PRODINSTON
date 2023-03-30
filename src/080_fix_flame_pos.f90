@@ -38,7 +38,7 @@ end subroutine
 
 subroutine disp_flame_pos(x_time)
     use main_variables, only: nmax, nsp, n_flame, n_flame_fix, &
-                              temp, vel, pres, dens, m_chsp, n_disp, mf_chem
+                              temp, vel, pres, dens, m_chsp, n_disp, mf_unburned
     implicit none
     
     integer :: n, nn, i, n_diff
@@ -72,7 +72,7 @@ subroutine disp_flame_pos(x_time)
         do n = nmax-n_diff+1, nmax
             temp(n) = 300.0d0
             do i = 1, nsp
-                m_chsp(n, i) = mf_chem(i)
+                m_chsp(n, i) = mf_unburned(i)
             enddo
         enddo
     endif
