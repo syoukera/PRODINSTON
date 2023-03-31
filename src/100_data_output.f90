@@ -12,7 +12,7 @@ subroutine data_output(x_time, n_out)
     write (n_file,'(30(A,","))') '  R(mm)','T(K)','mf(-)','mH2O(-)','v(m/s)','rho(kg/m3)','enthalpy(J/kg)'
     do n=1, nmax
         x_mm = xscl(n)*1.0d3
-        write (n_file,'(30(E12.4,","))') x_mm, temp(n),m_chsp(n,1),m_chsp(n,8),vel(n),dens(n),enth(n)
+        write (n_file, *) x_mm, temp(n), vel(n),dens(n),enth(n), (m_chsp(n, i), i = 1, nsp)
     end do
     close(n_file)
 !
