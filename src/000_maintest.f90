@@ -16,7 +16,7 @@ program main
     make_output = .false.
 !
 !   -------- data in out ----------
-    out_step  = 200
+    out_step  = 1
     x_dump    = 0.3d0
 !
 !   -------- log file -------------
@@ -47,7 +47,7 @@ program main
         call old_value_st
 !
 !       -- chemical kinetics calculation --
-        call chem_source(ntime)
+        call chem_source_cantera(ntime)
 !
 !       -- calculatoin of density change --
         call calc_dens
@@ -64,7 +64,7 @@ program main
         write (6,'("time = ",e12.4)') xtime
 
 !       -- set flame at same position --
-        call fix_flame_pos(xtime)
+        ! call fix_flame_pos(xtime)
 !
 !       -- data output --
 !
