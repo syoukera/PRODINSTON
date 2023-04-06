@@ -18,7 +18,8 @@ void getnextty(double y[], double *temperature, double *dt)
     // cout << "\n**** Get next TY ****\n" << endl;
 
     // create an ideal gas mixture that corresponds to OH submech from GRI-Mech 3.0
-    auto sol = newSolution("gri30_ion.yaml", "gas", "None");
+    // auto sol = newSolution("gri30_ion.yaml", "gas", "None");
+    auto sol = newSolution("gri30.yaml", "gri30", "None");
     auto gas = sol->thermo();
 
     // set the state
@@ -60,7 +61,8 @@ void getproperties(double y[], double *temperature, double diff[], double *lambd
     // cout << "\n**** Get proparties ****\n" << endl;
 
     // create an ideal gas mixture that corresponds to OH submech from GRI-Mech 3.0
-    auto sol = newSolution("gri30_ion.yaml", "gas", "None");
+    // auto sol = newSolution("gri30_ion.yaml", "gas", "None");
+    auto sol = newSolution("gri30.yaml", "gri30", "None");
 
     // get class for themochemical properties
     auto gas = sol->thermo();
@@ -78,7 +80,8 @@ void getproperties(double y[], double *temperature, double diff[], double *lambd
     *cp *= 1e4;
     
     // get class for obtaining transport properties
-    std::unique_ptr<Transport> tr(newTransportMgr("Ion", sol->thermo().get()));
+    // std::unique_ptr<Transport> tr(newTransportMgr("Ion", sol->thermo().get()));
+    std::unique_ptr<Transport> tr(newTransportMgr("Mix", sol->thermo().get()));
 
     // get mixture thermal conductivity [W/m/K]
     *lambda = tr->thermalConductivity();
