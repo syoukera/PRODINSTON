@@ -4,7 +4,7 @@ subroutine initial_set
                    !
 !   --------- scalar values ----------
     do n=1, nmax
-        if (n.le.nmax/2) then
+        if (n.le.nmax/6) then
             temp(n) = 5000.0d0
             enth(n) = 5902518.0d0
             do i=1, nsp
