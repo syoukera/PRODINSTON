@@ -16,11 +16,11 @@ program main
     make_output = .false.
 !
 !   -------- data in out ----------
-    out_step  = 1
+    out_step  = 200
     x_dump    = 0.3d0
 !
 !   -------- log file -------------
-    log_step  = 20
+    log_step  = 200
     nl_file   = 4
 !   -------- initial setting ------------
     call grid_set
