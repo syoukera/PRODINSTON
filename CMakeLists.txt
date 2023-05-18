@@ -14,7 +14,7 @@ include_directories(include)
 # include_directories(include)
 
 add_compile_options(-fno-range-check)
-add_compile_options(-fopenmp)
+# add_compile_options(-fopenmp)
 add_link_options(-fopenmp)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ..)
 
