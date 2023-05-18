@@ -38,7 +38,7 @@ SUBROUTINE DRIVER(T_CFD, P_CFD, Y_CFD, delta_t_CFD, TOLS_CFD, MAKE_OUTPUT, IWORK
 ! C*****END vms
 ! C
 ! C*****unix
-      OPEN (LINKCK, FORM='UNFORMATTED', FILE='data/cklink')
+      OPEN (LINKCK, FORM='UNFORMATTED', FILE='link/cklink')
       IF (MAKE_OUTPUT) THEN
             OPEN (LSAVE, FORM='UNFORMATTED', FILE ='output/save')
             OPEN (LOUT, FORM='FORMATTED', FILE='output/terminalout')
