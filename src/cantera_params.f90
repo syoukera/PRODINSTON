@@ -12,13 +12,14 @@ module cantera_params
             real(c_double), intent(in) :: dt
         end subroutine
 
-        subroutine getproperties(y, temperature, diff, lambda, cp) bind(C)
+        subroutine getproperties(y, temperature, diff, lambda, cp, mobility) bind(C)
             import 
             real(c_double), intent(inout) :: y(nsp)
             real(c_double), intent(inout) :: temperature
             real(c_double), intent(out) :: diff(nsp)
             real(c_double), intent(out) :: lambda
             real(c_double), intent(out) :: cp
+            real(c_double), intent(out) :: mobility(nsp)
         end subroutine
 
     end interface

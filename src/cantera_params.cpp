@@ -56,7 +56,8 @@ void getnextty(double y[], double *temperature, double *dt)
     }
 }
 
-void getproperties(double y[], double *temperature, double diff[], double *lambda, double *cp)
+void getproperties(double y[], double *temperature, double diff[], double *lambda, 
+                   double *cp, double mobility[])
 {
     // cout << "\n**** Get proparties ****\n" << endl;
 
@@ -95,5 +96,13 @@ void getproperties(double y[], double *temperature, double diff[], double *lambd
     // convert to CHEMKIN unit [cm2/s]
     for (size_t k = 0; k < nsp; k++) {
         diff[k] *= 1e4;
+    }
+    
+    // get mobilities [m2/V/s]
+    tr->getMobilities(&mobility[0]);
+    
+    // convert to CHEMKIN unit [cm2/V/s]
+    for (size_t k = 0; k < nsp; k++) {
+        mobility[k] *= 1e4;
     }
 }
