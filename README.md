@@ -1,5 +1,5 @@
 # PRODINSTON
 PRopaation of One DImeitional Non-STeady flame simutlatiON
 
-## openmp branch
-Parallelization using OpenMP
+## ion_trans Branch
+Calculate Ion transport caused from electric field
