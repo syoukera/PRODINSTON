@@ -22,16 +22,19 @@ implicit none
     real*8 temp(nmax)                            ! teperature [K]
     real*8 dens(nmax)                            ! density [kg/m3]
     real*8 enth(nmax)                            ! enthalpy [J/kg]
+    real*8 efield(nmax)                          ! electric field [V/m]
     real*8 m_chsp(nmax,nsp)                      ! mass fraction of chemical species [-]
     real*8 x_mu(nmax)                            ! viscosity []
     real*8 x_D(nmax,nsp)                         ! diffusion coef. []
     real*8 T_D(nmax)                             ! temp. diffusion coef.[]
+    real*8 mobility(nmax,nsp)                    ! mobility [m2/V/s]
 !
     real*8 o_vel(nmax)                           ! old value of velocity
     real*8 o_pres(nmax)                          ! old value of pressure 
     real*8 o_temp(nmax)                          ! old value of teperature 
     real*8 o_dens(nmax)                          ! old value of density
     real*8 o_enth(nmax)                          ! old value of enthalpy
+    real*8 o_efield(nmax)                        ! old value of electric field
     real*8 o_m_chsp(nmax,nsp)                    ! old value of mass fraction of chemical species
 !
 !   variable for flame position
