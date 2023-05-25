@@ -1,5 +1,5 @@
 # PRODINSTON
-PRopaation of One DImeitional Non-STeady flame simutlatiON
+PRopagation of One DImeitional Non-STeady flame simutlatiON
 
 ## flat_flame branch
 Flat flame propagation
