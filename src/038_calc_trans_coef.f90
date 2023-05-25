@@ -5,9 +5,10 @@ subroutine calc_trans_coef
     use output, only: make_output
     !$ use omp_lib
     real*8 chem_t, mf(nsp), t_cell
-    real*8 D_mix(nsp)      !diffusion coefficient  [cm^2/s]
-    real*8 Lambda_mix      !thermal conductivity   [erg/(cm*K*s)]
-    real*8 c_p             !specific heat          [erg/(g*K)]
+    real*8 D_mix(nsp)      ! diffusion coefficient  [cm^2/s]
+    real*8 Lambda_mix      ! thermal conductivity   [erg/(cm*K*s)]
+    real*8 c_p             ! specific heat          [erg/(g*K)]
+    real*8 mobil(nsp)      ! mobility               [m2/(V*s)]
 !
     make_output = .false.
 !
@@ -27,13 +28,19 @@ subroutine calc_trans_coef
         end do
         t_cell = o_temp(n)
 !
-        call getproperties(mf, t_cell, D_mix, Lambda_mix, c_p)
+        ! get Transport properties in cgs unit
+        call getproperties(mf, t_cell, D_mix, Lambda_mix, c_p, mobil)
 !
         T_D(n) = Lambda_mix/c_p*1.0d-1
         write (6,*) n, Lambda_mix, c_p
+
         do i=1, nsp
+            ! convert diffusion coefficient to SI unit [m2/s]
             x_D(n,i) = D_mix(i)*1.0d-4
+            ! convert mobility to SI unit [m2/V/s]
+            mobility(n,i) = mobil(i)*1.0d-4
         end do
+
     end do
     !$omp end parallel
 
