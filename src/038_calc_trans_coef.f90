@@ -3,6 +3,7 @@ subroutine calc_trans_coef
     use main_variables
     use cantera_params, only: getproperties
     use output, only: make_output
+    !$ use omp_lib
     real*8 chem_t, mf(nsp), t_cell
     real*8 D_mix(nsp)      !diffusion coefficient  [cm^2/s]
     real*8 Lambda_mix      !thermal conductivity   [erg/(cm*K*s)]
@@ -10,6 +11,7 @@ subroutine calc_trans_coef
 !
     make_output = .false.
 !
+    !$omp parallel
     do n=1, nmax
         do i = 1, nsp
             mf(i) = m_chsp(n, i)
@@ -33,5 +35,6 @@ subroutine calc_trans_coef
             x_D(n,i) = D_mix(i)*1.0d-4
         end do
     end do
+    !$omp end parallel
 
 end subroutine

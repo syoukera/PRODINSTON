@@ -20,6 +20,11 @@ add_executable(${PROJECT_NAME}
     240_output_m.f90
     cantera_params.cpp
     cantera_params.f90
+    senkin/dasac.f
+    senkin/driver.F90
+    senkin/HKTEMP.F
+    senkin/senkin.f
+    senkin/cklib.f
 )
 
 target_link_libraries(${PROJECT_NAME} cantera Threads::Threads)
