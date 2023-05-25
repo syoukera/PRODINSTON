@@ -1,4 +1,4 @@
-subroutine calc_scl_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
+subroutine calc_scl_coef(phi, Gamma, Beta, S_i, a_i, b_i, c_i, d_i,n_up)
 
     use main_variables
 !
@@ -8,7 +8,7 @@ subroutine calc_scl_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
     real*8 Pe_e, Pe_w, APe_e, APe_w
     real*8 delt_x_e, delt_x_w, delt_xc_e, delt_xc_w
     real*8 a_i(nmax), b_i(nmax), c_i(nmax), d_i(nmax)
-    real*8 phi(nmax), S_i(nmax),Gamma(nmax)
+    real*8 phi(nmax), S_i(nmax),Gamma(nmax), Beta(nmax)
     real*8 Gamma_e, Gamma_w, S_e, S_w, V_p
     integer n_up
 !
@@ -18,6 +18,7 @@ subroutine calc_scl_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
     V_p      = (4.0d0/3.0d0)*pai*xvel(1)**3
 !
     F_e = ((xvel(1)/xscl(2))*(dens(2)-dens(1))+dens(1))*vel(1)*S_e
+    F_e = F_e + ((xvel(1)/xscl(2))*(Beta(2)-Beta(1))+Beta(1)) *S_e ! electricfield induced transport
     D_e = Gamma_e/xvel(1)
 !
     a_i(1) = (dens(1)/delt_t)*V_p+(D_e+0.5d0*F_e)*S_e
@@ -41,6 +42,9 @@ subroutine calc_scl_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
 !
         F_e = ((delt_xc_e/delt_x_e)*(dens(n+1)-dens(n))+dens(n))  *vel(n)    *S_e
         F_w = ((delt_xc_w/delt_x_w)*(dens(n)-dens(n-1))+dens(n-1))*vel(n-1)  *S_w
+        F_e = F_e + ((delt_xc_e/delt_x_e)*(Beta(n+1)-Beta(n))+Beta(n))       *S_e ! electricfield induced transport
+        F_w = F_w + ((delt_xc_w/delt_x_w)*(Beta(n)-Beta(n-1))+Beta(n-1))     *S_w ! electricfield induced transport
+        
         D_e = Gamma_e/delt_x_e                                               *S_e
         D_w = Gamma_w/delt_x_w                                               *S_w
         Pe_e =(F_e/S_e)*(xvel(n)-xvel(n-1))/Gamma_e
