@@ -2,13 +2,16 @@ subroutine calc_scl_coef(phi, Gamma, Beta, S_i, a_i, b_i, c_i, d_i,n_up)
 
     use main_variables
 !
-!
-    real*8 F_e, F_w
-    real*8 D_e, D_w
+    real*8, intent(in) :: phi(nmax)   ! variable to be solved
+    real*8, intent(in) :: S_i(nmax)   ! 
+    real*8, intent(in) :: Gamma(nmax) ! diffusion coefficient
+    real*8, intent(in) :: Beta(nmax)  ! electric diffustion term: rho*mobility*efield
+    real*8, intent(out) :: a_i(nmax), b_i(nmax), c_i(nmax), d_i(nmax) ! coefficients for TDMA
+
+    real*8 F_e, F_w ! strength of advection, Patankar eq. (5.9)
+    real*8 D_e, D_w ! diffusion conductance, Patankar eq. (5.9)
     real*8 Pe_e, Pe_w, APe_e, APe_w
     real*8 delt_x_e, delt_x_w, delt_xc_e, delt_xc_w
-    real*8 a_i(nmax), b_i(nmax), c_i(nmax), d_i(nmax)
-    real*8 phi(nmax), S_i(nmax),Gamma(nmax), Beta(nmax)
     real*8 Gamma_e, Gamma_w, S_e, S_w, V_p
     integer n_up
 !
