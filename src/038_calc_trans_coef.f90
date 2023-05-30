@@ -29,7 +29,7 @@ subroutine calc_trans_coef
         t_cell = o_temp(n)
 !
         ! get Transport properties in cgs unit
-        call getproperties(mf, t_cell, D_mix, Lambda_mix, c_p, mobil)
+        call getproperties(mf, t_cell, D_mix, Lambda_mix, c_p, mobil, charge)
 !
         T_D(n) = Lambda_mix/c_p*1.0d-1
         write (6,*) n, Lambda_mix, c_p
