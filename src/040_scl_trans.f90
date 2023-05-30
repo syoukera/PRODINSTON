@@ -12,7 +12,7 @@ subroutine scl_trans
             phi(n)   = o_m_chsp(n,i)
             S_i(n)   = 0.0d0
             Gamma(n) = dens(n)*x_D(n,i)
-            Beta(n)  = dens(n)*mobility(n, i)*efield(n)
+            Beta(n)  = charge(n)*dens(n)*mobility(n, i)*efield(n)
        end do
 !
         call calc_scl_coef(phi, Gamma, Beta, S_i, a_i, b_i, c_i, d_i,n_up)
