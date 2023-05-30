@@ -20,7 +20,7 @@ subroutine initial_set
         vel(n)      = 0.0d0
         pres(n)     = 0.0d0
         dens(n)     = pres0*ave_mol_w/(gas_const*temp(n))
-        efield(n)   = 0.0d0
+        efield(n)   = 1.0d3
         x_mu(n)     = 1.767d-5       !!temporary N2@300K [Pa s]
         T_D(n)      = 0.0257/1006.0  !!temporary heat trans coef (N2@300K[W/mK]) / specific heat   (N2@300K[J/kgK])
        do i=1, nsp
