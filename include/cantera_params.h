@@ -4,5 +4,5 @@
 extern "C" {
   void getnextty(double y[], double *temperature, double *dt);
   void getproperties(double y[], double *temperature, double diff[], double *lambda, 
-                     double *cp, double mobility[]);
+                     double *cp, double mobility[], double charge[]);
 }

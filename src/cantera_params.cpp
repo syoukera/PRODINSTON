@@ -57,7 +57,7 @@ void getnextty(double y[], double *temperature, double *dt)
 }
 
 void getproperties(double y[], double *temperature, double diff[], double *lambda, 
-                   double *cp, double mobility[])
+                   double *cp, double mobility[], double charge[])
 {
     // cout << "\n**** Get proparties ****\n" << endl;
 
@@ -70,6 +70,11 @@ void getproperties(double y[], double *temperature, double diff[], double *lambd
 
     // get number of species
     size_t nsp = gas->nSpecies();
+    
+    // get charges [C]
+    for (size_t k = 0; k < nsp; k++) {
+        charge[k] = gas->charge(k);
+    }
 
     // set the state
     gas->setState_TPY(*temperature, OneAtm, y);
