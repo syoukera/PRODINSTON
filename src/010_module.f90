@@ -28,6 +28,7 @@ implicit none
     real*8 x_D(nmax,nsp)                         ! diffusion coef. []
     real*8 T_D(nmax)                             ! temp. diffusion coef.[]
     real*8 mobility(nmax,nsp)                    ! mobility [m2/V/s]
+    real*8 charge(nsp)                           ! charge of ith supecies [C]
 !
     real*8 o_vel(nmax)                           ! old value of velocity
     real*8 o_pres(nmax)                          ! old value of pressure 
