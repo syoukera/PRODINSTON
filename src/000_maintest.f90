@@ -2,15 +2,17 @@
 !
 !
 program main
-    
+
     use main_variables
     use output, only: make_output
+    implicit none
+
     real*8 xtime
     real*8 before_chk(nmax), after_chk(nmax)
     real*8 x_residue, x_limit, x_max, x_dump
     integer out_step, log_step
     integer n_simple_max
-    integer int_time, n_cont, n_out, ntest, nl_file
+    integer int_time, n_cont, n_out, ntest, nl_file, ntime
 !
 !   -------- chemkin data open -----------
     make_output = .false.
@@ -42,30 +44,13 @@ program main
     end if
     
     do ntime = 1, 9999999
+
         xtime = xtime+delt_t
-!
-        call old_value_st
-!
-!       -- chemical kinetics calculation --
-        call chem_source_cantera(ntime)
-!
-!       -- calculatoin of density change --
-        call calc_dens
-!
-!       -- calculation of velocity change according to density change --
-        call calc_vel_cont
-!
-!       -- calculation of scalar transport --
-        call calc_trans_coef
-        call scl_trans
-        call enth_trans
-        call calc_dens
-!
         write (6,'("time = ",e12.4)') xtime
 
-!       -- set flame at same position --
-        ! call fix_flame_pos(xtime)
-!
+        ! proceed time step
+        call timestep(ntime)
+
 !       -- data output --
 !
         if (mod(ntime,out_step).eq.0) then
