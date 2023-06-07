@@ -1,9 +1,14 @@
 !   modules
 module main_variables
 implicit none
+
+!   flag to use chemkin to get reaction rates and transport properties
+!   if false, cantera was used
+    logical, parameter :: use_chemkin = .true.
+
 !   grid parameter
     real*8,parameter   :: pai  = 3.1415926535d0
-    integer, parameter :: nmax = 600            ! grid number [-]
+    integer, parameter :: nmax = 600             ! grid number [-]
     integer, parameter :: nsp = 53               ! number of chemical species [-]
     real*8 xscl(nmax), xvel(nmax)                ! grid position, xscl:scalar, xvel:velocity [m]
 !

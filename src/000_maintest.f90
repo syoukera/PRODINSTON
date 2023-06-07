@@ -17,7 +17,9 @@ program main
 !
 !   -------- chemkin data open -----------
     make_output = .false.
-    call initialize_chemkin_workarray()
+    if (use_chemkin .eqv. .true.) then
+        call initialize_chemkin_workarray()
+    endif
 !
 !   -------- data in out ----------
     out_step  = 200

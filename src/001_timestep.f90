@@ -3,28 +3,39 @@ subroutine timestep(ntime)
     ! solve equation of continuity 
     ! not solve momentum equation
 
+    use main_variables, only: use_chemkin
     implicit none
     integer, intent(in) :: ntime
     
     call old_value_st
 !
-!       -- chemical kinetics calculation --
-    call chem_source_cantera(ntime)
+!   -- chemical kinetics calculation --
+    if (use_chemkin .eqv. .true.) then
+        call chem_source_chemkin(ntime)
+    else
+        call chem_source_cantera(ntime)
+    endif
 !
-!       -- calculatoin of density change --
+!   -- calculatoin of density change --
     call calc_dens
 !
-!       -- calculation of velocity change according to density change --
+!   -- calculation of velocity change according to density change --
     call calc_vel_cont
 !
-!       -- calculation of scalar transport --
-    call calc_trans_coef_cantera
+!   -- calculation of scalar transport --
+    if (use_chemkin .eqv. .true.) then
+        call calc_trans_coef_chemkin
+    else
+        call calc_trans_coef_cantera
+    endif
+
     call scl_trans
     call enth_trans
     call calc_dens
 
-!       -- set flame at same position --
+!   -- set flame at same position --
     ! call fix_flame_pos(xtime)
+
 end subroutine
 
 ! subroutine timestep_simple()
