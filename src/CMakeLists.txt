@@ -1,5 +1,6 @@
 add_executable(${PROJECT_NAME}
     000_maintest.f90
+    001_timestep.f90
     010_module.f90
     020_grid_set.f90
     030_initial_set.f90
@@ -17,6 +18,7 @@ add_executable(${PROJECT_NAME}
     103_log_output.f90
     105_cont_input.f90
     110_cont_output.f90
+    210_chemkin_m.f90
     240_output_m.f90
     cantera_params.cpp
     cantera_params.f90
@@ -25,6 +27,8 @@ add_executable(${PROJECT_NAME}
     senkin/HKTEMP.F
     senkin/senkin.f
     senkin/cklib.f
+    senkin/tranlib.f
+    senkin/dmath.f
 )
 
 target_link_libraries(${PROJECT_NAME} cantera Threads::Threads)
