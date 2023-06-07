@@ -4,6 +4,7 @@
 program main
 
     use main_variables
+    use chemkin_params, only: initialize_chemkin_workarray
     use output, only: make_output
     implicit none
 
@@ -16,6 +17,7 @@ program main
 !
 !   -------- chemkin data open -----------
     make_output = .false.
+    call initialize_chemkin_workarray()
 !
 !   -------- data in out ----------
     out_step  = 200
@@ -31,7 +33,7 @@ program main
     x_limit = 1.0d-6
 !
     ! read (5,*) n_cont
-    n_cout = 0
+    n_out = 0
 !
 !   -------- time loop --------------
     call data_output(0.0d0,0)
