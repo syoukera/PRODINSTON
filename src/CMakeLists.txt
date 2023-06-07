@@ -23,7 +23,6 @@ add_executable(${PROJECT_NAME}
     cantera_params.cpp
     cantera_params.f90
     senkin/dasac.f
-    senkin/driver.F90
     senkin/HKTEMP.F
     senkin/senkin.f
     senkin/cklib.f
