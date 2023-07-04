@@ -1,5 +1,7 @@
 # PRODINSTON
 PRopaation of One DImeitional Non-STeady flame simutlatiON
 
-## sph_flame branch
-Spherical flame propagation
+## flat_flame2 branch
+Propagation of flat flame  
+Build with Visual Studio and Intel Fortran Compiler
+SIMPLE Method will be impremented
