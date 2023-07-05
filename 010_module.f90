@@ -16,6 +16,9 @@ implicit none
     real*8, parameter :: gas_const= 8.3145      ! gas constant [J/mol K]
     real*8, parameter :: ave_mol_w= 28.8d-3     ! mean molecular weight of air [kg/mol]
 !
+!   flag parameter
+    logical, parameter :: is_flat = .true.       ! flag for solving flat flame or spherical flame
+!
 !   variables
     real*8 vel(nmax)                             ! velocity [m/s]
     real*8 pres(nmax)                            ! pressure (fluid motion) [Pa]
@@ -38,7 +41,7 @@ implicit none
 end module
 
      CHARACTER(6) FUNCTION NUM2STR(NUM)
-		! ƒXƒeƒbƒv”‚ğ6Œ…‚Ì•¶š—ñ‚É•ÏŠ·i¶‘¤0ƒpƒfƒBƒ“ƒOj
+		! ï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½ï¿½ï¿½6ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½É•ÏŠï¿½ï¿½iï¿½ï¿½ï¿½ï¿½0ï¿½pï¿½fï¿½Bï¿½ï¿½ï¿½Oï¿½j
 	    IMPLICIT NONE
       INTEGER,INTENT(IN) :: NUM
       CHARACTER*6 STR
