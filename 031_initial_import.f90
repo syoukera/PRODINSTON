@@ -54,7 +54,7 @@ subroutine initial_import()
                     (m_chsp(i, j), j = 1, nsp)
         endif
             
-        print *, xscl(i), vel(i), temp(i), dens(i), m_chsp(i, 7)
+        ! print *, xscl(i), vel(i), temp(i), dens(i), m_chsp(i, 7)
     end do
     
     close (17)
