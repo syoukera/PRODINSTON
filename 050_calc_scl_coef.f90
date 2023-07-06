@@ -14,8 +14,18 @@ subroutine calc_scl_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
 !
 !   ------- n=1 center boundary condition ---------
     Gamma_e  = xvel(1)/xscl(2)*(Gamma(2)-Gamma(1))+Gamma(1)
-    S_e      = 4.0d0*pai*xvel(1)**2
-    V_p      = (4.0d0/3.0d0)*pai*xvel(1)**3
+    
+    if (is_flat .eqv. .true.) then
+        ! flat flame
+        ! Control Volume is Quadrangular prism
+        S_e      = 1.0d0
+        V_p      = xvel(1)
+    else
+        ! spherical flame
+        ! Control Volume is Spherical shell
+        S_e      = 4.0d0*pai*xvel(1)**2
+        V_p      = (4.0d0/3.0d0)*pai*xvel(1)**3
+    endif
 !
     F_e = ((xvel(1)/xscl(2))*(dens(2)-dens(1))+dens(1))*vel(1)*S_e
     D_e = Gamma_e/xvel(1)
