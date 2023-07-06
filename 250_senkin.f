@@ -1,6 +1,6 @@
       SUBROUTINE SENKIN (t_cfd, p_cfd, y_cfd, delta_t_cfd, tols_cfd)
       use chemkin_params
-      use output, only: make_output
+      use main_variables, only: make_output
 
       IMPLICIT DOUBLE PRECISION (A-H, O-Z), INTEGER (I-N)
 
@@ -122,7 +122,7 @@ C
      5                  KSYM, CCKWRK,
      6                  p_cfd, t_cfd, y_cfd, delta_t_cfd, tols_cfd)
       
-      use output, only: make_output
+      use main_variables, only: make_output
       use chemkin_params, only: ipick, iprck, ipwt, ipwdot, ipu, iprd
 
       IMPLICIT DOUBLE PRECISION (A-H, O-Z), INTEGER (I-N)
@@ -291,7 +291,7 @@ C
      2                   LRW, LSW, Z, ZP, ELWRK, IELWRK, SWORK, RPAR,
      3                   IPAR, ATOL, RTOL, TOLS, XMOL, KSYM)
       
-      use output, only: make_output
+      use main_variables, only: make_output
 
       IMPLICIT DOUBLE PRECISION (A-H, O-Z), INTEGER (I-N)
 

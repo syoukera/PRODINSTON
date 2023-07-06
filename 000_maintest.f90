@@ -3,7 +3,6 @@
 !
     use main_variables
     use chemkin_params, only: initialize_chemkin_workarray
-    use output, only: make_output
     real*8 xtime
     real*8 before_chk(nmax), after_chk(nmax)
     real*8 x_residue, x_limit, x_max, x_dump
@@ -12,7 +11,6 @@
     integer int_time, n_cont, n_out, ntest, nl_file
 !
 !   -------- chemkin data open -----------
-    make_output = .false.
     call initialize_chemkin_workarray()
 !
 !   -------- data in out ----------
@@ -22,10 +20,10 @@
 !   -------- log file -------------
     log_step  = 20
     nl_file   = 4
-!   -------- initial setting ------------
-    call grid_set
-    call initial_set
-    n_simple_max = 200
+    !   -------- initial setting ------------
+        call grid_set
+        call initial_set
+        n_simple_max = 200
     x_limit = 1.0d-6
 !
     read (5,*) n_cont

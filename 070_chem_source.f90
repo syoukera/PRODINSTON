@@ -3,7 +3,6 @@ subroutine chem_source(ntime)
 !
     use main_variables
     use chemkin_params, only: get_next_TY
-    use output, only: make_output
 
     integer ntime
     real*8 t_cell

@@ -17,7 +17,8 @@ implicit none
     real*8, parameter :: ave_mol_w= 28.8d-3     ! mean molecular weight of air [kg/mol]
 !
 !   flag parameter
-    logical, parameter :: is_flat = .true.       ! flag for solving flat flame or spherical flame
+    logical, parameter :: is_flat = .true.        ! flag for solving flat flame or spherical flame
+    logical, parameter :: make_output = .false.   ! flag for output in chemkin
 !
 !   variables
     real*8 vel(nmax)                             ! velocity [m/s]
@@ -25,6 +26,7 @@ implicit none
     real*8 temp(nmax)                            ! teperature [K]
     real*8 dens(nmax)                            ! density [kg/m3]
     real*8 enth(nmax)                            ! enthalpy [J/kg]
+    real*8 eField(nmax)                          ! electric field [V/m]
     real*8 m_chsp(nmax,nsp)                      ! mass fraction of chemical species [-]
     real*8 x_mu(nmax)                            ! viscosity []
     real*8 x_D(nmax,nsp)                         ! diffusion coef. []

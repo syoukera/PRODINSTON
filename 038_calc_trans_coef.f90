@@ -2,13 +2,11 @@ subroutine calc_trans_coef
 !
     use main_variables
     use chemkin_params, only: get_tranport_data
-    use output, only: make_output
     real*8 chem_t, mf_chem(nsp), t_cell
     real*8 D_mix(nsp)      !diffusion coefficient  [cm^2/s]
     real*8 Lambda_mix      !thermal conductivity   [erg/(cm*K*s)]
     real*8 c_p             !specific heat          [erg/(g*K)]
 !
-    make_output = .false.
 !
     do n=1, nmax
         do i = 1, nsp
