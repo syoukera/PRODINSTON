@@ -20,10 +20,20 @@
 !   -------- log file -------------
     log_step  = 20
     nl_file   = 4
-    !   -------- initial setting ------------
-        call grid_set
+
+!   -------- initial setting ------------
+    ! set grid
+    call grid_set
+
+    if (start_from_csv .eqv. .true.) then
+        ! import from csv file containing result of cantera
+        call initial_import
+    else
+        ! set values by using subroutine
         call initial_set
-        n_simple_max = 200
+    endif
+
+    n_simple_max = 200
     x_limit = 1.0d-6
 !
     read (5,*) n_cont
