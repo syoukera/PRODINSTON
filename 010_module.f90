@@ -18,6 +18,8 @@ implicit none
 !
 !   flag parameter
     logical, parameter :: is_flat = .true.        ! flag for solving flat flame or spherical flame
+    logical, parameter :: is_ion  = .false.       ! flag for using gri30_ion.yaml, not impremented.
+    logical, parameter :: start_from_csv = .true. ! flag for importing csv file as initial conditions
     logical, parameter :: make_output = .false.   ! flag for output in chemkin
 !
 !   variables
