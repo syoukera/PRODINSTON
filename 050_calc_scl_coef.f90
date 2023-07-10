@@ -18,20 +18,23 @@ subroutine calc_scl_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
     if (is_flat .eqv. .true.) then
         ! flat flame
         ! Control Volume is Quadrangular prism
+        S_p      = 1.0d0
         S_e      = 1.0d0
         V_p      = xvel(1)
     else
         ! spherical flame
         ! Control Volume is Spherical shell
+        S_p      = 0.0d0
         S_e      = 4.0d0*pai*xvel(1)**2
         V_p      = (4.0d0/3.0d0)*pai*xvel(1)**3
     endif
 !
+    F_p = dens(1)                                      *vel(1)*S_p ! temporary use vel(1) for vel_p
     F_e = ((xvel(1)/xscl(2))*(dens(2)-dens(1))+dens(1))*vel(1)*S_e
-    D_e = Gamma_e/xvel(1)
+    D_e = Gamma_e/xvel(1)                                     *S_e
 !
-    a_i(1) = (dens(1)/delt_t)*V_p+(D_e+0.5d0*F_e)*S_e
-    b_i(1) = (D_e-0.5d0*F_e)*S_e
+    a_i(1) = (dens(1)/delt_t)*V_p + D_e + 0.5d0*F_e - F_p
+    b_i(1) = D_e-0.5d0*F_e
     c_i(1) = 0.0d0
     d_i(1) = (phi(1)*o_dens(1)/delt_t)*V_p   
 !
