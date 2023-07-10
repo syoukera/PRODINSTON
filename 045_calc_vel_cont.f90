@@ -5,17 +5,20 @@ subroutine calc_vel_cont
     if (is_flat .eqv. .true.) then
         ! flat flame
         ! Control Volume is Quadrangular prism
+        S_cp = 1.0d0  ! cp = capital p
         S_p = 1.0d0   ! area of surface of sphere
         V_p = xvel(1) ! volume of Control Volume (= delta_x)
     else 
         ! spherical flame
         ! Control Volume is sphere with radius of delta_x
+        S_cp = 0.0d0
         S_p = 4.0d0*pai*xvel(1)**2         ! area of surface of sphere
         V_p = 4.0d0/3.0d0*pai*(xvel(1)**3) ! volume of Control Volume
     endif
     
 ! 
-    vel(1) = -(dens(1)-o_dens(1))*V_p/delt_t/(0.5d0*(dens(1)+dens(2))*S_p)
+    vel(1) = -(dens(1)-o_dens(1))*V_p/delt_t + dens(1)*vel(1)*S_cp &
+             /(0.5d0*(dens(1)+dens(2))*S_p)
 ! 
     do n=2,nmax-1
 !   
