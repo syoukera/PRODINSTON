@@ -15,28 +15,14 @@ subroutine calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
     real*8 S_E, S_P, S_sp, V_e
 !
 !   ------- n=1 center boundary condition ---------
-    Gamma_e  = xvel(1)/xscl(2)*(Gamma(2)-Gamma(1))+Gamma(1)
-    
-    if (is_flat .eqv. .true.) then
-        ! flat flame
-        ! Control Volume is Quadrangular prism
-        S_e      = 1.0d0
-        V_p      = xvel(1)
-    else
-        ! spherical flame
-        ! Control Volume is Spherical shell
-        S_e      = 4.0d0*pai*xvel(1)**2
-        V_p      = (4.0d0/3.0d0)*pai*xvel(1)**3
-    endif
-!
-    F_e = ((xvel(1)/xscl(2))*(dens(2)-dens(1))+dens(1))*vel(1)*S_e
-    D_e = Gamma_e/xvel(1)
-!
-    a_i(1) = (dens(1)/delt_t)*V_p+(D_e+0.5d0*F_e)*S_e
-    b_i(1) = (D_e-0.5d0*F_e)*S_e
-    c_i(1) = 0.0d0
-    d_i(1) = (phi(1)*o_dens(1)/delt_t)*V_p   
-!
+
+        ! fixed velocity at inlet
+        ! u_e = o_u_e
+        ! coefficients for TDMA
+        a_i(n) = 1.0d0
+        b_i(n) = 0.0d0
+        c_i(n) = 0.0d0
+        d_i(n) = phi(n)
 !    
 !   ------- coef. calc. ---------
     do n=2, nmax-1
