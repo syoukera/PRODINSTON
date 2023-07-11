@@ -89,16 +89,12 @@ subroutine calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
 !
 !   ------- n=nmax far field boundary condition ---------
 !
-    if (is_flat .eqv. .true.) then
-        ! flat flame
-        V_p      = xvel(nmax) - xvel(nmax-1) ! volume of Control Volume
-    else
-        ! spherical flame
-        V_p      = (4.0d0/3.0d0)*pai*(xvel(nmax)**3-xvel(nmax-1)**3) ! volume of Control Volume
-    endif
+    ! du/dx = 0
+    ! i.e. u_e = u_p
+    ! [caution] this is only work for flat flame (not spherical flame)
     b_i(nmax) = 0.0d0
-    c_i(nmax) = 0.0d0
-    a_i(nmax) = (dens(nmax)/delt_t)*V_p
-    d_i(nmax) = (phi(nmax)*o_dens(nmax)/delt_t)*V_p
+    c_i(nmax) = 1.0d0
+    a_i(nmax) = 1.0d0
+    d_i(nmax) = 0.0d0
 !!
 end subroutine
