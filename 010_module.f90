@@ -35,6 +35,12 @@ implicit none
     real*8 x_D(nmax,nsp)                         ! diffusion coef. []
     real*8 T_D(nmax)                             ! temp. diffusion coef.[]
 !
+!   variable for SIMPLE method
+    real*8 p_star(nmax)                          ! estimated pressure
+    real*8 p_dash(nmax)                          ! correction of pressure
+    real*8 u_star(nmax)                          ! estimated velocity
+!
+!   array for old value
     real*8 o_vel(nmax)                           ! old value of velocity
     real*8 o_pres(nmax)                          ! old value of pressure 
     real*8 o_temp(nmax)                          ! old value of teperature 
