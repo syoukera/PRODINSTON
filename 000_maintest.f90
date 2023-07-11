@@ -53,20 +53,24 @@
 !
         call old_value_st
 !
-!       -- chemical kinetics calculation --
-        call chem_source(ntime)
-!
-!       -- calculatoin of density change --
-        call calc_dens
-!
-!       -- calculation of velocity change according to density change --
-        call calc_vel_cont
-!
-!       -- calculation of scalar transport --
-        call calc_trans_coef
-        call scl_trans
-        call enth_trans
-        call calc_dens
+        if (use_simple .eqv. .true.) then
+            call timestep_simple
+        else
+    !       -- chemical kinetics calculation --
+            call chem_source(ntime)
+    !
+    !       -- calculatoin of density change --
+            call calc_dens
+    !
+    !       -- calculation of velocity change according to density change --
+            call calc_vel_cont
+    !
+    !       -- calculation of scalar transport --
+            call calc_trans_coef
+            call scl_trans
+            call enth_trans
+            call calc_dens
+        endif
 !
         write (6,'("time = ",e12.4)') xtime
 !
