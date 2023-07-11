@@ -54,6 +54,7 @@
         call old_value_st
 !
         if (use_simple .eqv. .true.) then
+            ! progress timestep using SIMPLE method
             call timestep_simple
         else
     !       -- chemical kinetics calculation --
