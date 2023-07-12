@@ -13,6 +13,8 @@ subroutine calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
     real*8 Pe_E, Pe_P, APe_E, APe_P
     real*8 delt_x_E, delt_x_P
     real*8 S_E, S_P, S_sp, V_e
+    real*8 a_f, a_p, o_a_e, b
+    ! real*8 a_e (a_e is defined in main_variables)
 !
 !   ------- n=1 center boundary condition ---------
 
