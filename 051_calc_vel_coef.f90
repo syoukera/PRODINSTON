@@ -21,10 +21,10 @@ subroutine calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
         ! fixed velocity at inlet
         ! u_e = o_u_e
         ! coefficients for TDMA
-        a_i(n) = 1.0d0
-        b_i(n) = 0.0d0
-        c_i(n) = 0.0d0
-        d_i(n) = phi(n)
+        a_i(1) = 1.0d0
+        b_i(1) = 0.0d0
+        c_i(1) = 0.0d0
+        d_i(1) = phi(1)
 !    
 !   ------- coef. calc. ---------
     do n=2, nmax-1
@@ -97,9 +97,9 @@ subroutine calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
     ! du/dx = 0
     ! i.e. u_e = u_p
     ! [caution] this is only work for flat flame (not spherical flame)
+    a_i(nmax) = 1.0d0
     b_i(nmax) = 0.0d0
     c_i(nmax) = 1.0d0
-    a_i(nmax) = 1.0d0
     d_i(nmax) = 0.0d0
 !!
 end subroutine
