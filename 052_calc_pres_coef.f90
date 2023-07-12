@@ -8,82 +8,62 @@ subroutine calc_pres_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
     integer, intent(in) :: n_up
     real*8, intent(out) :: a_i(nmax), b_i(nmax), c_i(nmax), d_i(nmax)
 
-    real*8 F_E, F_P
-    real*8 D_E, D_P
-    real*8 Pe_E, Pe_P, APe_E, APe_P
-    real*8 delt_x_E, delt_x_P
-    real*8 S_E, S_P, S_sp, V_e
+    real*8 S_e, S_w, S_p, V_p
+    real*8 dens_e, dens_w
+    real*8 d_e, d_w
+    real*8 a_E, a_W, a_P, b
 !
 !   ------- n=1 center boundary condition ---------
 
-        ! fixed velocity at inlet
-        ! u_e = o_u_e
-        ! coefficients for TDMA
-        a_i(n) = 1.0d0
-        b_i(n) = 0.0d0
-        c_i(n) = 0.0d0
-        d_i(n) = phi(n)
+    ! fixed velocity at inlet
+    ! u_e = o_u_e
+    ! coefficients for TDMA
+    a_i(n) = 1.0d0
+    b_i(n) = 0.0d0
+    c_i(n) = 0.0d0
+    d_i(n) = phi(n)
 !    
 !   ------- coef. calc. ---------
     do n=2, nmax-1
 
-        delta_x_E = xvel(n+1) - xvel(n)
-        delta_x_P = xvel(n)   - xvel(n-1)
-
         if (is_flat .eqv. .true.) then
             ! flat flame
             ! Control Volume is Quadrangular prism
-            S_E  = 1.0d0 ! surface area of upper CV
-            S_P  = 1.0d0 ! surface area of lower CV
-            S_se = 1.0d0 ! surface area of center CV
-            V_e  = xscl(n+1) - xscl(n) ! Volume of CV
+            S_e      = 1.0d0 ! area of upper surface of Control Volume
+            S_w      = 1.0d0 ! area of lower surface of Control Volume
+            S_p      = 1.0d0 ! area of center surface of Control Volume
+            V_p      = xvel(n) - xvel(n-1) ! volume of Control Volume
         else 
             ! spherical flame
             ! Control Volume is Spherical shell
-            S_E      = 4.0d0*pai*xscl(n+1)**2   ! area of upper surface of Control Volume
-            S_P      = 4.0d0*pai*xscl(n)**2 ! area of lower surface of Control Volume
-            S_se     = 4.0d0*pai*xvel(n)**2 ! area of center surface of Control Volume
-            V_e      = (4.0d0/3.0d0)*pai*(xscl(n+1)**3-xscl(n)**3) ! volume of Control Volume
+            S_e      = 4.0d0*pai*xvel(n)**2   ! area of upper surface of Control Volume
+            S_w      = 4.0d0*pai*xvel(n-1)**2 ! area of lower surface of Control Volume
+            S_p      = 4.0d0*pai*xscl(n)**2   ! area of center surface of Control Volume
+            V_p      = (4.0d0/3.0d0)*pai*(xvel(n)**3-xvel(n-1)**3) ! volume of Control Volume
         endif
 
-        F_E = dens(n+1)*0.5d0*(vel(n+1) + vel(n))*S_E ! dens_E*vel_E*S_E
-        F_P = dens(n)  *0.5d0*(vel(n-1) + vel(n))*S_E ! dens_P*vel_P*S_P
-        D_E = Gamma(n+1)/delta_x_E*S_E                ! Gamma_E/(delta_x_E)*S_E
-        D_P = Gamma(n)  /delta_x_P*S_P                ! Gamma_P/(delta_x_P)*S_P
+        dens_e = 0.5d0*(dens(n) + dens(n+1))
+        dens_w = 0.5d0*(dens(n) + dens(n-1))
 
-        ! Peclet number        
-        Pe_E = F_E/D_E 
-        Pe_P = F_P/D_P
-        
-        ! function A(|P|) for convection and diffusion
-        ! see Patanker Table 5.2
-        if (n_up.eq.1) then
-            APe_E = 1.0d0
-            APe_P = 1.0d0
-        else if (n_up.eq.2) then
-            APe_E = ddim(1.0d0-0.5d0*dabs(Pe_E),0.0d0)
-            APe_P = ddim(1.0d0-0.5d0*dabs(Pe_P),0.0d0)
-        else if (n_up.eq.3) then
-            APe_E = ddim((1.0d0-0.1d0*dabs(Pe_E))**5,0.0d0)
-            APe_P = ddim((1.0d0-0.1d0*dabs(Pe_P))**5,0.0d0)
-        else
-            APe_E = 1.0d0-0.5d0*dabs(Pe_E)
-            APe_P = 1.0d0-0.5d0*dabs(Pe_P)
-        end if
+        ! See Patankar eq.(6.16)
+        d_e = S_e/a_moment(n)   ! S_e/a_moment_e
+        d_w = S_w/a_moment(n-1) ! S_w/a_moment_w
 
         ! coefficients of discretized form in CV
         ! see Patanakar 5.3-2
-        a_f = D_E*APe_E+ddim(-F_E,0.0d0)
-        a_p = D_P*APe_P+ddim(F_P,0.0d0)
-        o_a_e = o_dens_e*V_e/delta_t
-        b     = o_a_e*phi(n)
-        a_e   = a_f + a_e + o_a_e
-        
+        a_E = dens_e*d_e*S_e ! dens_e*d_e*delta_y_e
+        a_W = dens_w*d_w*S_w ! dens_w*d_w*delta_y_w
+        a_P = a_E + a_W
+        ! b = (o_dens_P - dens_P)*delta_x*delta_y/delta_t &
+        !   + (dens_w*u_star_w - dens_e*u_star_e)*delta_y
+        b = (o_dens(n) - dens(n))*V_p/delta_t &
+          + (dens_w*u_star(n-1) - dens_e*u_star(n))*S_p
+
         ! coefficients for TDMA
-        a_i(n) = a_e
-        b_i(n) = a_f
-        c_i(n) = a_p
-        d_i(n) = b + (p_star(n) - p_star(n+1))*S_se ! b + (p_star_P - p_star_E)*S_se 
+        a_i(n) = a_P
+        b_i(n) = a_E
+        c_i(n) = a_W
+        d_i(n) = b
 !
     end do
 !
