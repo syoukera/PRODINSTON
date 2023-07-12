@@ -11,10 +11,12 @@ subroutine timestep_simple
 
     ! step 2
     ! get u_star from momentum equation
-    call vel_trans(u_star, p_star)
+    call vel_trans()
 
     ! step 3
     ! get p_dash from eq. (6.22)
+    ! pressure correction equation
+    call pres_correct()
 
     ! check conversion
     call calc_mass_generation_term(b)
