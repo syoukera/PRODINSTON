@@ -58,6 +58,9 @@ subroutine calc_pres_coef(a_i, b_i, c_i, d_i)
         b = (o_dens(n) - dens(n))*V_p/delta_t &
           + (dens_w*u_star(n-1) - dens_e*u_star(n))*S_p
 
+        ! save mass generation term to module
+        b_mass(n) = b
+
         ! coefficients for TDMA
         a_i(n) = a_P
         b_i(n) = a_E

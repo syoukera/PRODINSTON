@@ -40,6 +40,7 @@ implicit none
     real*8 p_dash(nmax)                          ! correction of pressure
     real*8 u_star(nmax)                          ! estimated velocity
     real*8 a_moment(nmax)                        ! coefficient for discretised momentum eq.
+    real*8 b_mass(nmax)                          ! mass generation term in pressure cor. eq.
 !
 !   array for old value
     real*8 o_vel(nmax)                           ! old value of velocity
