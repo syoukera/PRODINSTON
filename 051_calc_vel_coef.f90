@@ -13,8 +13,8 @@ subroutine calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
     real*8 Pe_E, Pe_P, APe_E, APe_P
     real*8 delt_x_E, delt_x_P
     real*8 S_E, S_P, S_sp, V_e
-    real*8 a_f, a_p, o_a_e, b
-    ! real*8 a_e (a_e is defined in main_variables)
+    real*8 a_f, a_p, a_e, o_a_e, b
+    ! real*8 a_moment (a_moment is defined in main_variables)
 !
 !   ------- n=1 center boundary condition ---------
 
@@ -79,7 +79,10 @@ subroutine calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
         a_p = D_P*APe_P+ddim(F_P,0.0d0)
         o_a_e = o_dens_e*V_e/delta_t
         b     = o_a_e*phi(n)
-        a_e   = a_f + a_e + o_a_e
+        a_e   = a_f + a_p + o_a_e
+
+        ! save a_e to module for pressure correction
+        a_moment = a_e
         
         ! coefficients for TDMA
         a_i(n) = a_e
