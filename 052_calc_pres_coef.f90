@@ -15,13 +15,14 @@ subroutine calc_pres_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
 !
 !   ------- n=1 center boundary condition ---------
 
-    ! fixed velocity at inlet
-    ! u_e = o_u_e
+    ! fixed pressure at inlet
+    ! p_P = o_p_P
+    ! i.e. p_dash_P = 0.0
     ! coefficients for TDMA
-    a_i(n) = 1.0d0
-    b_i(n) = 0.0d0
-    c_i(n) = 0.0d0
-    d_i(n) = phi(n)
+    a_i(1) = 1.0d0
+    b_i(1) = 0.0d0
+    c_i(1) = 0.0d0
+    d_i(1) = 0.0d0
 !    
 !   ------- coef. calc. ---------
     do n=2, nmax-1
@@ -69,12 +70,13 @@ subroutine calc_pres_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
 !
 !   ------- n=nmax far field boundary condition ---------
 !
-    ! du/dx = 0
-    ! i.e. u_e = u_p
-    ! [caution] this is only work for flat flame (not spherical flame)
-    b_i(nmax) = 0.0d0
-    c_i(nmax) = 1.0d0
+    ! fixed pressure at outlet
+    ! p_P = o_p_P
+    ! i.e. p_dash_P = 0.0
+    ! coefficients for TDMA
     a_i(nmax) = 1.0d0
+    b_i(nmax) = 0.0d0
+    c_i(nmax) = 0.0d0
     d_i(nmax) = 0.0d0
 !!
 end subroutine calc_pres_coef
