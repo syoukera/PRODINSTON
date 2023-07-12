@@ -1,11 +1,9 @@
 
-subroutine calc_pres_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
+subroutine calc_pres_coef(a_i, b_i, c_i, d_i)
 
     use main_variables
 !
 !    
-    real*8, intent(in) :: phi(nmax), S_i(nmax),Gamma(nmax) 
-    integer, intent(in) :: n_up
     real*8, intent(out) :: a_i(nmax), b_i(nmax), c_i(nmax), d_i(nmax)
 
     real*8 S_e, S_w, S_p, V_p
