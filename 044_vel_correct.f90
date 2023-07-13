@@ -4,16 +4,16 @@ subroutine vel_correct()
     use main_variables
     implicit none
 
-    integer i
+    integer n
 
     ! inlet
     ! fixed velocity
     vel(1) = u_star(1)
 
     ! inner grid
-    do i = 2, nmax-1
+    do n = 2, nmax-1
         ! u_e = u_star_e + d_e*(p_dash_P - p_dash_E)
-        vel(n) = u_star(n) + d(n)*(p_dash(n) - p_dash(n+1))
+        vel(n) = u_star(n) + d_moment(n)*(p_dash(n) - p_dash(n+1))
     enddo
 
     ! outlet
