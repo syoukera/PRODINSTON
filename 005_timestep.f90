@@ -4,7 +4,7 @@ subroutine timestep_simple
     implicit none
 
     real*8 b_sum
-    integer i
+    integer n
 
     ! SIMPLE algorism
     ! see Patankar p.130
@@ -32,13 +32,15 @@ subroutine timestep_simple
 
         ! summation mass generation term
         b_sum = 0.0d0
-        do i = 2, nmax-1
-            b_sum = b_sum + b_mass(i)
+        do n = 2, nmax-1
+            b_sum = b_sum + b_mass(n)
         enddo
         
         ! step 4
         ! get p (with relaxation 0.8)
-        p = p_star + 0.8d0*p_dash
+        do n = 1, nmax
+            pres(n) = p_star(n) + 0.8d0*p_dash(n)
+        enddo
 
         ! step 5
         ! get u from correction equation of velocity
@@ -58,8 +60,8 @@ subroutine timestep_simple
 
         ! step 7
         ! set p as p_star
-        do i = 1, nmax
-            p_star(i) = pres(i)
+        do n = 1, nmax
+            p_star(n) = pres(n)
         end do
 
     enddo
