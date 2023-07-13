@@ -12,7 +12,7 @@ subroutine vel_trans
         do n=1, nmax
             phi(n)   = vel(n)
             S_i(n)   = 0.0d0
-            Gamma(n) = dens(n)*x_mu(n,i)
+            Gamma(n) = dens(n)*x_mu(n)
         end do
 !
         call calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
@@ -20,7 +20,7 @@ subroutine vel_trans
         call calc_tdma(phi, a_i, b_i, c_i, d_i)
 !
         do n=1, nmax
-            u_star(n,i) = phi(n)
+            u_star(n) = phi(n)
         end do
     !
 end subroutine vel_trans
