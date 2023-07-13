@@ -1,10 +1,9 @@
 ! chemical kinetics calc. subroutine
-subroutine chem_source(ntime)
+subroutine chem_source()
 !
     use main_variables
     use chemkin_params, only: get_next_TY
 
-    integer ntime
     real*8 t_cell
     real*8 mf_chem(nsp),hbms
     real*8 chem_t

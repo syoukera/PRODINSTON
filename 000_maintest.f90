@@ -58,7 +58,7 @@
             call timestep_simple
         else
     !       -- chemical kinetics calculation --
-            call chem_source(ntime)
+            call chem_source
     !
     !       -- calculatoin of density change --
             call calc_dens
