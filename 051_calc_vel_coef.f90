@@ -82,7 +82,11 @@ subroutine calc_vel_coef(phi, Gamma, S_i, a_i, b_i, c_i, d_i,n_up)
         a_e   = a_f + a_p + o_a_e
 
         ! save a_e to module for pressure correction
-        a_moment = a_e
+        a_moment(n) = a_e
+        
+        ! save d_e to module for velocity coirrection
+        d_moment(n) = S_se/a_e
+        
         
         ! coefficients for TDMA
         a_i(n) = a_e
