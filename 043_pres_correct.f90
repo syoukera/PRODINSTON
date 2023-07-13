@@ -16,7 +16,7 @@ subroutine pres_correct()
     call calc_tdma(phi, a_i, b_i, c_i, d_i)
 !
     do n=1, nmax
-        p_dash(n,i) = phi(n)
+        p_dash(n) = phi(n)
     end do
     !
 end subroutine pres_correct
