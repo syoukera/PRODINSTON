@@ -19,7 +19,7 @@ implicit none
 !   flag parameter
     logical, parameter :: is_flat = .true.        ! flag for solving flat flame or spherical flame
     logical, parameter :: is_ion  = .false.       ! flag for using gri30_ion.yaml, not impremented.
-    logical, parameter :: use_simple  = .false.    ! flag for using simple method, else use continuas eq.
+    logical, parameter :: use_simple  = .true.    ! flag for using simple method, else use continuas eq.
     logical, parameter :: start_from_csv = .true. ! flag for importing csv file as initial conditions
     logical, parameter :: make_output = .false.   ! flag for output in chemkin
 !
@@ -40,6 +40,7 @@ implicit none
     real*8 p_dash(nmax)                          ! correction of pressure
     real*8 u_star(nmax)                          ! estimated velocity
     real*8 a_moment(nmax)                        ! coefficient for discretised momentum eq.
+    real*8 d_moment(nmax)                        ! de for discretised momentum eq.
     real*8 b_mass(nmax)                          ! mass generation term in pressure cor. eq.
 !
 !   array for old value
