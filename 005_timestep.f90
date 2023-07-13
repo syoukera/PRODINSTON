@@ -45,13 +45,22 @@ subroutine timestep_simple
         call vel_correct()
 
         ! step 6
-        ! update other variables
-        call update_temp()
-        call update_chsp()
+        ! update T and Y
+        
+        ! update sourche term T and Y by chemkin
+        call chem_source()
+
+        ! solve transport on T and Y
+        call calc_trans_coef()
+        call scl_trans()
+        call enth_trans()
+        call calc_dens
 
         ! step 7
         ! set p as p_star
-        p_star = p
+        do i = 1, nmax
+            p_star(i) = pres(i)
+        end do
 
     enddo
 
