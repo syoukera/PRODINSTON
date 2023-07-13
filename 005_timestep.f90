@@ -42,7 +42,7 @@ subroutine timestep_simple
 
         ! step 5
         ! get u from correction equation of velocity
-        call get_u(u, p)
+        call vel_correct()
 
         ! step 6
         ! update other variables
