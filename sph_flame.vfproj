@@ -14,7 +14,7 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true"/>
 				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" SubSystem="subSystemConsole"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
@@ -26,16 +26,23 @@
 	<Files>
 		<Filter Name="ソースファイル" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\000_maintest.f90"/>
+		<File RelativePath=".\005_timestep.f90"/>
 		<File RelativePath=".\010_module.f90"/>
 		<File RelativePath=".\020_grid_set.f90"/>
 		<File RelativePath=".\030_initial_set.f90"/>
+		<File RelativePath=".\031_initial_import.f90"/>
 		<File RelativePath=".\032_old_value_st.f90"/>
 		<File RelativePath=".\035_calc_dens.f90"/>
 		<File RelativePath=".\038_calc_trans_coef.f90"/>
 		<File RelativePath=".\040_scl_trans.f90"/>
+		<File RelativePath=".\041_vel_trans.f90"/>
 		<File RelativePath=".\042_enth_trans.f90"/>
+		<File RelativePath=".\043_pres_correct.f90"/>
+		<File RelativePath=".\044_vel_correct.f90"/>
 		<File RelativePath=".\045_calc_vel_cont.f90"/>
 		<File RelativePath=".\050_calc_scl_coef.f90"/>
+		<File RelativePath=".\051_calc_vel_coef.f90"/>
+		<File RelativePath=".\052_calc_pres_coef.f90"/>
 		<File RelativePath=".\060_calc_tdma.f90"/>
 		<File RelativePath=".\070_chem_source.f90"/>
 		<File RelativePath=".\100_data_output.f90"/>
@@ -46,7 +53,6 @@
 		<File RelativePath=".\210_cklib.f"/>
 		<File RelativePath=".\220_dasac.f"/>
 		<File RelativePath=".\230_dmath.f"/>
-		<File RelativePath=".\240_output_m.f90"/>
 		<File RelativePath=".\250_senkin.f"/>
 		<File RelativePath=".\260_tranlib.f"/></Filter>
 		<Filter Name="ヘッダーファイル" Filter="fi;fd"/>
