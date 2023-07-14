@@ -41,7 +41,6 @@ subroutine chem_source()
 
         do i=1, nsp
             ! return updated temperature
-            o_m_chsp(n,i) = mf_chem(i)
             m_chsp(n,i)   = mf_chem(i) 
         end do
     end do      
