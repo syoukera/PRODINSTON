@@ -17,8 +17,7 @@ subroutine calc_vel_cont
     endif
     
 ! 
-    vel(1) = -(dens(1)-o_dens(1))*V_p/delt_t + dens(1)*vel(1)*S_cp &
-             /(0.5d0*(dens(1)+dens(2))*S_p)
+    ! vel(1) = -(dens(1)-o_dens(1))*V_p/delt_t/(0.5d0*(dens(1)+dens(2))*S_p)
 ! 
     do n=2,nmax-1
 !   
