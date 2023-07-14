@@ -36,7 +36,8 @@
     n_simple_max = 200
     x_limit = 1.0d-6
 !
-    read (5,*) n_cont
+    ! read (5,*) n_cont
+    n_cont = 0
 !
 !   -------- time loop --------------
     call data_output(0.0d0,0)
