@@ -4,13 +4,16 @@ subroutine timestep_simple
     implicit none
 
     real*8 b_sum
-    integer n, j
+    integer n, j, n_out
 
     ! SIMPLE algorism
     ! see Patankar p.130
 
     ! set initial mass generation term
     b_sum = 1.0d0
+    
+    ! set initial value of output index
+    n_out = 0
     
     print *, "SIMPLE Loop start"
 
@@ -87,6 +90,10 @@ subroutine timestep_simple
         ! do n = 1, nmax
         !     p_star(n) = pres(n)
         ! end do
+        
+        ! output
+        n_out = n_out+1
+        call simple_output(n_out)
 
     enddo
 
