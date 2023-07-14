@@ -46,7 +46,11 @@ subroutine calc_pres_coef(a_i, b_i, c_i, d_i)
 
         ! See Patankar eq.(6.16)
         d_e = S_e/a_moment(n)   ! S_e/a_moment_e
-        d_w = S_w/a_moment(n-1) ! S_w/a_moment_w
+        if (n == 2) then
+            d_w = 0.0d0
+        else
+            d_w = S_w/a_moment(n-1) ! S_w/a_moment_w
+        end if    
 
         ! coefficients of discretized form in CV
         ! see Patanakar 5.3-2
@@ -55,7 +59,7 @@ subroutine calc_pres_coef(a_i, b_i, c_i, d_i)
         a_P = a_E + a_W
         ! b = (o_dens_P - dens_P)*delta_x*delta_y/delta_t &
         !   + (dens_w*u_star_w - dens_e*u_star_e)*delta_y
-        b = (o_dens(n) - dens(n))*V_p/delta_t &
+        b = (o_dens(n) - dens(n))*V_p/delt_t &
           + (dens_w*u_star(n-1) - dens_e*u_star(n))*S_p
 
         ! save mass generation term to module
