@@ -1,5 +1,5 @@
 ! chemical kinetics calc. subroutine
-subroutine chem_source()
+subroutine chem_source_term()
     !
         use main_variables
         use chemkin_params, only: get_next_TY
@@ -36,13 +36,15 @@ subroutine chem_source()
             ! update temperature and mass fraction after delt_t
             call get_next_TY(pres0, t_cell, mf_chem, delt_t, tols)
     !
-            ! return updated temperature
-            temp(n) = t_cell
+
+            ! save source term of temperature
+            src_temp(n) = t_cell - o_temp
     
             do i=1, nsp
-                ! return updated temperature
-                m_chsp(n,i)   = mf_chem(i) 
+                ! save source term of mass fraction
+                src_chsp(n, i) = mf_chem(i) - o_m_chsp(n, i)
             end do
+
         end do      
     !    
-    end subroutine
+    end subroutine chem_source_term

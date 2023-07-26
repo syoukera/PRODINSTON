@@ -51,6 +51,9 @@ implicit none
     real*8 o_enth(nmax)                          ! old value of enthalpy
     real*8 o_m_chsp(nmax,nsp)                    ! old value of mass fraction of chemical species
 !
+!   source term
+    real*8 src_temp(nmax)                          ! source term for mass fraction
+    real*8 src_chsp(nmax,nsp)                      ! source term for temperature 
 ! 
 end module
 
