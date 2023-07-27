@@ -52,21 +52,26 @@
         xtime = xtime+delt_t
 !
         call old_value_st
-!
-!       -- chemical kinetics calculation --
-        call chem_source(ntime)
-!
-!       -- calculatoin of density change --
-        call calc_dens
-!
-!       -- calculation of velocity change according to density change --
-        call calc_vel_cont
-!
-!       -- calculation of scalar transport --
-        call calc_trans_coef
-        call scl_trans
-        call enth_trans
-        call calc_dens
+
+        if (use_simple .eq. .true.) then
+            ! update variables using SIMPLE method
+            call timestep_simple()
+        else 
+            ! -- chemical kinetics calculation --
+            call chem_source(ntime)
+            
+            ! -- calculatoin of density change --
+            call calc_dens
+
+            ! -- calculation of velocity change according to density change --
+            call calc_vel_cont
+            
+            !-- calculation of scalar transport --
+            call calc_trans_coef
+            call scl_trans
+            call enth_trans
+            call calc_dens
+        end if
 !
         write (6,'("time = ",e12.4)') xtime
 !

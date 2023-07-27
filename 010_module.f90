@@ -21,6 +21,7 @@ implicit none
     logical, parameter :: is_ion  = .false.       ! flag for using gri30_ion.yaml, not impremented.
     logical, parameter :: start_from_csv = .true. ! flag for importing csv file as initial conditions
     logical, parameter :: make_output = .false.   ! flag for output in chemkin
+    logical, parameter :: use_simple = .false.    ! flag for use SIMPLE method in timestep
 !
 !   variables
     real*8 vel(nmax)                             ! velocity [m/s]
