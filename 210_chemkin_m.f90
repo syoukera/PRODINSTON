@@ -135,6 +135,26 @@ module chemkin_params
 
     end subroutine calc_pointer
 
+    subroutine get_density(t_cfd, p_cfd, y_cfd, dens)
+
+        implicit none
+        real(8), intent(in) :: t_cfd     ! K
+        real(8), intent(in) :: p_cfd     ! Pa
+        real(8), intent(in) :: y_cfd(kk) ! Mass fractions
+        real(8), intent(out) :: dens     ! density [kg/m3]
+
+        ! variables for chemkin
+        real(8) dens_ck ! gm/cm**3
+
+        call ckrhoy(p_cfd, t_cfd, y_cfd, int_ckwk(ipick), &
+                    real_ckwk(iprck), dens_ck)
+
+        ! convert unit from g/cm3 to kg/m3
+        dens = dens_ck*1e3
+
+    end subroutine get_density
+
+
     subroutine get_tranport_data(t_cfd, p_cfd, y_cfd, D_mix, Lambda_mix, c_p)
 !
 !        use chemkin_params
