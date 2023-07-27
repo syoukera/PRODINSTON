@@ -45,10 +45,14 @@ subroutine timestep_simple()
 
         ! step 6
         ! update temperatura and composition of chemical species
+        ! and density
 
         ! === not impremented ===
-        ! calc_temp()
-        ! calc_chsp()
+        ! call calc_temp()
+        ! call calc_chsp()
+
+        ! update density
+        call calc_dens()
 
         ! step 7
         ! check conversion
