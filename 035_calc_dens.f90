@@ -4,7 +4,7 @@ subroutine calc_dens()
 !
     implicit none
 
-    integer n
+    integer n, i
     real*8 density
     real*8 chem_t       ! total amount of chsp
     real*8 mf_chem(nsp) ! variable array of m_chsp for chemkin
@@ -33,7 +33,7 @@ subroutine calc_dens()
         end do
 
         ! calculate density using chemkin subroutine
-        call get_density(temp(n), pres(n), mf_chem, density)
+        call get_density(temp(n), pres(n)+pres0, mf_chem, density)
         ! assign obtained density in variable array
         dens(n) = density
 
