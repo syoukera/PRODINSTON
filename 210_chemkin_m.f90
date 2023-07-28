@@ -145,11 +145,15 @@ module chemkin_params
 
         ! variables for chemkin
         real(8) dens_ck ! gm/cm**3
+        real(8) p_ck    ! dyne/cm**2
 
-        call ckrhoy(p_cfd, t_cfd, y_cfd, int_ckwk(ipick), &
+        ! convert unit; Pa to dyne/cm**2
+        p_ck = p_cfd*10.0d0 
+
+        call ckrhoy(p_ck, t_cfd, y_cfd, int_ckwk(ipick), &
                     real_ckwk(iprck), dens_ck)
 
-        ! convert unit from g/cm3 to kg/m3
+        ! convert unit; g/cm3 to kg/m3
         dens = dens_ck*1e3
 
     end subroutine get_density
