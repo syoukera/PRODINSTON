@@ -23,7 +23,7 @@ subroutine calc_trans_coef
         end do
         t_cell = o_temp(n)
 !
-        call get_tranport_data(t_cell, pres0, mf_chem, D_mix, Lambda_mix, c_p)
+        call get_tranport_data(t_cell, pres(n)+pres0, mf_chem, D_mix, Lambda_mix, c_p)
 !
         T_D(n) = Lambda_mix/c_p*1.0d-1
         write (6,*) n, Lambda_mix, c_p
