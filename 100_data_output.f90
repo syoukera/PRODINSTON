@@ -1,10 +1,12 @@
 subroutine data_output(x_time, n_out)
 !
     use main_variables
-    integer n_out,n_file
+    implicit none
+    
+    integer n_out, n_file, n
     real*8 x_mm, x_time
     character*6 data_n, num2str
-    nfile = 10+n_out
+    n_file = 10+n_out
     data_n = num2str(n_out)
 !
     open(unit=n_file, file='data_'//data_n//'.csv' ,status='unknown')

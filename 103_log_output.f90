@@ -1,7 +1,8 @@
 subroutine log_output(xtime,nl_file)
 !
     use main_variables
-    integer nl_file
+    implicit none
+    integer nl_file, i
     real*8 xtime
     real*8 x_0310, x_1100, x_1900, v_0310, v_1100, v_1900
     integer i_0310, i_1100, i_1900
