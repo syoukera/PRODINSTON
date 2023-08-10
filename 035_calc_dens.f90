@@ -10,7 +10,6 @@ subroutine calc_dens_ck()
     real*8 mf_chem(nsp) ! variable array of m_chsp for chemkin
 
     do n = 1, nmax
-        ! dens(n) = pres(n)*ave_mol_w/(gas_const*temp(n))
 
         ! post process for chemkin 
         ! assign composition of chemical species
@@ -47,7 +46,7 @@ subroutine calc_dens()
     integer n
 
     do n=1, nmax
-        dens(n)   = pres0*ave_mol_w/(gas_const*temp(n))
+        dens(n)   = (pres(n)+pres0)*ave_mol_w/(gas_const*temp(n))
     end do
 
 end subroutine calc_dens
