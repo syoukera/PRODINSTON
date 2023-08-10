@@ -1,4 +1,12 @@
 subroutine calc_dens_ck()
+
+    ! calculate density using CHEMKIN subroutine
+    ! can consider mixture averaged Molcular weight
+
+    !!! NOT IMPREMENTED CORRECTRY
+    ! output density is not guaranteed
+    ! please use calc_dens()
+
     use main_variables
     use chemkin_params, only: get_density
 !
@@ -11,7 +19,7 @@ subroutine calc_dens_ck()
 
     do n = 1, nmax
 
-        ! post process for chemkin 
+        ! pre process for chemkin 
         ! assign composition of chemical species
         do i = 1, nsp
             mf_chem(i) = m_chsp(n, i)
@@ -41,6 +49,11 @@ subroutine calc_dens_ck()
 end subroutine calc_dens_ck
 
 subroutine calc_dens()
+
+    ! calculate density from gas equation
+    ! use averaged molcular weight
+    ! initialy usign value of Nitrogen
+
     use main_variables
     implicit none
     integer n
