@@ -1,4 +1,4 @@
-subroutine calc_dens()
+subroutine calc_dens_ck()
     use main_variables
     use chemkin_params, only: get_density
 !
@@ -39,4 +39,15 @@ subroutine calc_dens()
 
     end do
 
-end subroutine
+end subroutine calc_dens_ck
+
+subroutine calc_dens()
+    use main_variables
+    implicit none
+    integer n
+
+    do n=1, nmax
+        dens(n)   = pres0*ave_mol_w/(gas_const*temp(n))
+    end do
+
+end subroutine calc_dens
