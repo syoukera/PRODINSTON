@@ -14,7 +14,7 @@ implicit none
 !   const parameter
     real*8, parameter :: pres0    = 0.1e6       ! static pressure [Pa]
     real*8, parameter :: gas_const= 8.3145      ! gas constant [J/mol K]
-    real*8, parameter :: ave_mol_w= 28.8d-3     ! mean molecular weight of air [kg/mol]
+    real*8, parameter :: ave_mol_w= 28.8d-3     ! mean molecular weight of air [g/mol]
 !
 !   flag parameter
     logical, parameter :: is_flat = .true.        ! flag for solving flat flame or spherical flame
@@ -34,6 +34,7 @@ implicit none
     real*8 x_mu(nmax)                            ! viscosity []
     real*8 x_D(nmax,nsp)                         ! diffusion coef. []
     real*8 T_D(nmax)                             ! temp. diffusion coef.[]
+    real*8 mean_wt(nmax)                         ! mean molecular weight [g/mol]
 !
     real*8 o_vel(nmax)                           ! old value of velocity
     real*8 o_pres(nmax)                          ! old value of pressure 
