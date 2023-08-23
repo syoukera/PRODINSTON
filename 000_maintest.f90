@@ -14,7 +14,7 @@
     call initialize_chemkin_workarray()
 !
 !   -------- data in out ----------
-    out_step  = 200
+    out_step  = 10
     x_dump    = 0.3d0
 !
 !   -------- log file -------------
@@ -49,7 +49,7 @@
     end if
     
     ! -- calculatoin of density change --
-    call calc_dens
+    call calc_dens_ck
 !
     do ntime = 1, 9999999
         xtime = xtime+delt_t
@@ -58,13 +58,13 @@
 
         if (use_simple .eq. .true.) then
             ! update variables using SIMPLE method
-            call timestep_simple()
+            ! call timestep_simple()
         else 
             ! -- chemical kinetics calculation --
-            call chem_source(ntime)
+            ! call chem_source(ntime)
             
             ! -- calculatoin of density change --
-            call calc_dens
+            call calc_dens_ck
 
             ! -- calculation of velocity change according to density change --
             call calc_vel_cont
@@ -73,7 +73,7 @@
             call calc_trans_coef
             call scl_trans
             call enth_trans
-            call calc_dens
+            call calc_dens_ck
         end if
 !
         write (6,'("time = ",e12.4)') xtime
@@ -84,9 +84,9 @@
             n_out = n_out+1
             call data_output(xtime, n_out)
         end if
-        if (mod(ntime,log_step).eq.0) then
-            call log_output(xtime,nl_file)
-        end if
+        ! if (mod(ntime,log_step).eq.0) then
+        !     call log_output(xtime,nl_file)
+        ! end if
 !
         call cont_output(xtime,n_out)
 !
