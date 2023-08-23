@@ -47,6 +47,9 @@
         xtime = 0.0d0
         n_out  = 0
     end if
+    
+    ! -- calculatoin of density change --
+    call calc_dens
 !
     do ntime = 1, 9999999
         xtime = xtime+delt_t
