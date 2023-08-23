@@ -135,6 +135,17 @@ module chemkin_params
 
     end subroutine calc_pointer
 
+    subroutine get_mean_wt(y_cfd, mean_wt)
+
+        implicit none
+        real(8), intent(in) :: y_cfd(kk) ! Mass fractions
+        real(8), intent(out) :: mean_wt  ! mean molecular weight [g/mol]
+
+        call ckmmwy (y_cfd, int_ckwk(ipick), real_ckwk(iprck), mean_wt)
+
+    end subroutine get_mean_wt
+
+
     subroutine get_density(t_cfd, p_cfd, y_cfd, dens)
 
         implicit none
